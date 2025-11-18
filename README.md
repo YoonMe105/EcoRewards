@@ -1,2 +1,6 @@
 # EcoRewards
 RWDD ASSIGNMENT
+
+Language - HTML, CSS, JAVASCRIPT, MYSQL, PHP
+
+
