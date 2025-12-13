@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Top navbar */
+.top-navbar {
+    height: 60px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 20px;
+}
+
+.navbutton {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.system{
+    display: flex;
+    align-items: left;
+}
+
+/* Main layout */
+.layout {
+    display: flex;
+    height: calc(100vh - 60px); /* under top navbar */
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background: #f5f5f5;
+    border-right: 1px solid #ddd;
+    padding-top: 20px;
+    transition: width 0.3s ease;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border-bottom: 1px solid white;
+
+    padding: 12px 20px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Collapsed sidebar */
+.sidebar.collapsed {
+    width: 60px;
+}
+
+.sidebar.collapsed a {
+    display: none;
+}
+
+.has-submenu {
+    flex-direction: column;
+}
+
+.submenu-toggle {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+    align-items: center;
+    padding: 0;
+}
+
+.arrow {
+    margin-left: auto;
+    transition: transform 0.3s;
+}
+
+.submenu {
+    list-style: none;
+    display: none;
+    background: rgba(255,255,255,0.1);
+}
+
+.submenu li {
+    padding: 12px 40px;
+    color: black;
+}
+
+
+/* Active submenu */
+.has-submenu.active .submenu {
+    display: block;
+}
+
+.has-submenu.active .arrow {
+    transform: rotate(180deg);
+}
+
+/* Content area */
+.content {
+    flex: 1;
+    padding: 20px;
+    background: #fafafa;
+}
