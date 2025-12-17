@@ -29,7 +29,8 @@
 
 .system{
     display: flex;
-    align-items: left;
+    gap: 15px;
+    margin-left: auto;
 }
 
 /* Main layout */

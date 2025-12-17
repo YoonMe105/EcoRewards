@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> 
+    <title>Home Page for Admin</title> 
 
     <!-- css -->
     <link href="./assets/css/style.css" rel="stylesheet" type="text/css" />
@@ -11,7 +11,24 @@
 </head>
 <body>
 
-    <?php include "navbar.php" ?>
+    
+
+    <nav class="top-navbar">
+        <button class="navbutton" id="toggleSidebar">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <span class="logo">EcoRewards</span>
+
+        <div class="system">
+            <button class="darkmode" id="darkmode">
+                <i class="fa-regular fa-moon"></i>
+            </button>
+
+            <button class="logout" id="logout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+        </div>
+    </nav>
     
     <div class="layout">
         <aside class="sidebar" id="sidebar">
