@@ -8,13 +8,12 @@
 
 const toggleBtn = document.getElementById("toggleSidebar");
 const sidebar = document.getElementById("sidebar");
-const submenuToggle = document.querySelector(".submenu-toggle");
 
 toggleBtn.addEventListener("click", () => {
     sidebar.classList.toggle("collapsed");
 });
 
-submenuToggle.addEventListener("click", () => {
-    submenuToggle.parentElement.classList.toggle("active");
+document.querySelector('.submenubtn').addEventListener('click', function (e) {
+    e.preventDefault(); // prevent #
+    this.parentElement.classList.toggle('active');
 });
-

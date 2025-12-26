@@ -6,84 +6,146 @@
     <title>Home Page for Admin</title> 
 
     <!-- css -->
-    <link href="./assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="./assets/css/navstyle.css" rel="stylesheet" type="text/css" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
 </head>
 <body>
 
-    
+    <?php include('navbar.php') ?>
 
-    <nav class="top-navbar">
-        <button class="navbutton" id="toggleSidebar">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-        <span class="logo">EcoRewards</span>
-
-        <div class="system">
-            <button class="darkmode" id="darkmode">
-                <i class="fa-regular fa-moon"></i>
-            </button>
-
-            <button class="logout" id="logout">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-            </button>
-        </div>
-    </nav>
-    
-    <div class="layout">
+    <div class="wrapper">
+        
         <aside class="sidebar" id="sidebar">
             <ul class="menulinks">
-                <li>
+                <li class="link">
                     <i class="fa-solid fa-house"></i>
                     <a href="#">Dashboard</a>
                 </li>
-                <li>
+
+                <li class="link">
                     <i class="fa-solid fa-gift"></i>
                     <a href="#">Rewards</a>
                 </li>
-                <li>
+
+                <li class="link">
                     <i class="fa-solid fa-coins"></i>
                     <a href="#">Point Rules</a>
                 </li>
-                <li>
+
+                <li class="link">
                     <i class="fa-solid fa-handshake"></i>
                     <a href="#">Partners</a>
                 </li>
+
                 <li class="has-submenu">
-                    <div class="submenu-toggle">
-                        <i class="fa-solid fa-calendar"></i>
-                        <span>Event</span>
+                    <a href="#" class="submenubtn">
+                        <i class="fa-solid fa-calendar events"></i>
+                        <span>Events</span>
                         <i class="fa-solid fa-chevron-down arrow"></i>
-                    </div>
+                    </a>
 
                     <ul class="submenu">
                         <li><a href="#">Event Lists</a></li>
                         <li><a href="#">Event Approval</a></li>
                     </ul>
                 </li>
-    
-                <li>
+
+                <li class="link">
                     <i class="fa-solid fa-users"></i>
                     <a href="#">Users</a>
                 </li>
-                <li>
+
+                <li class="link">
                     <i class="fa-solid fa-user-tie"></i>
                     <a href="#">Admins</a>
                 </li>
-                <li>
+
+                <li class="link">
                     <i class="fa-regular fa-user"></i>
                     <a href="#">Profile</a>
                 </li>
             </ul>
         </aside>
 
-        <main class="content">
-            <h1>Dashboard Content</h1>
-            <p>Your page content goes here.</p>
+        <main class="main">
+            <h1>Dashboard</h1>
+            <p>Welcome back! Here's what's happening with EcoRewards today.</p>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="name">
+                        <h3>User</h3>
+                        <strong>10</strong>
+                    </div>
+                    <i class="fa-solid fa-users fa-3x icons"></i>
+                </div>
+
+                <div class="card">
+                    <div class="name">
+                        <h3>Partners</h3>
+                        <strong>10</strong>
+                    </div>
+                    <i class="fa-solid fa-handshake fa-3x icons"></i>
+                </div>
+
+                <div class="card">
+                    <div class="name">
+                        <h3>Rewards</h3>
+                        <strong>10</strong>
+                    </div>
+                    <i class="fa-solid fa-gift fa-3x icons"></i>
+                </div>
+
+                <div class="card">
+                    <div class="name">
+                        <h3>Events</h3>
+                        <strong>10</strong>
+                    </div>
+                    <i class="fa-solid fa-calendar fa-3x icons"></i>
+                </div>
+            </div>
+
+            <h1 class="items">Recycle Items</h1>
+            <div class="cards">
+                <div class="card">
+                    <i class="fa-solid fa-users fa-3x icons"></i>
+                    <div class="name">
+                        <h3>User</h3>
+                        <strong>10</strong>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-users fa-3x icons"></i>
+                    <div class="name">
+                        <h3>Partners</h3>
+                        <strong>10</strong>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-users fa-3x icons"></i>
+                    <div class="name">
+                        <h3>Rewards</h3>
+                        <strong>10</strong>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-users fa-3x icons"></i>
+                    <div class="name">
+                        <h3>Events</h3>
+                        <strong>10</strong>
+                    </div>
+                </div>
+            </div>
+
         </main>
     </div>
+    
 
-
+    
     <script src="./assets/js/app.js" type="text/javascript"></script>
 
     
