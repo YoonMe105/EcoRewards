@@ -6,7 +6,7 @@
     <title>Home Page for Admin</title> 
 
     <!-- css -->
-    <link href="./assets/css/navstyle.css" rel="stylesheet" type="text/css" />
+    <link href="./assets/css/style.css" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
 </head>
@@ -144,7 +144,6 @@
         </main>
     </div>
     
-
     
     <script src="./assets/js/app.js" type="text/javascript"></script>
 
