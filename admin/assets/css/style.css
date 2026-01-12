@@ -5,7 +5,7 @@
     font-family: Arial, sans-serif;
 }
 
-/*  NAVBAR  */
+/* Start Top Navbar  */
 .top-navbar{
     height: 60px;
     background-color: #fff;
@@ -42,14 +42,10 @@
     gap: 15px;
 }
 
-/*  WRAPPER  */
-.wrapper{
-    display: flex;
-    margin-top: 60px; 
-    height: calc(100vh - 60px);
-}
+/* End Top Navbar */
 
-/*  SIDEBAR  */
+
+/*  Start SIDEBAR  */
 .sidebar{
     width: 180px;
     background-color: #f5f5f5;
@@ -143,11 +139,279 @@
     transform: rotate(-180deg);
 }
 
+
+/* End Sidebar */
+
+
+/*  WRAPPER  */
+.wrapper{
+    display: flex;
+    margin-top: 60px; 
+    height: calc(100vh - 60px);
+}
+
 /*  MAIN  */
 .main{
     flex: 1;
     padding: 30px;
 }
+
+/* End Main */
+
+/* Start rewards.php */
+.header{
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.addrewards{
+    background-color: #8ee0bd;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.addrewards:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1);
+}
+
+.rewardstable {
+    width: 100%;
+    background: #fff;
+
+    border-collapse: collapse;
+    border-radius: 8px;
+
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+
+.rewardstable thead {
+    background-color: #f3f4f6;
+}
+
+.rewardstable th {
+    text-align: left;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+
+.rewardstable td {
+    padding: 14px 16px;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+    vertical-align: middle;
+}
+/* testing */
+
+.datatable {
+    width: 100%;
+    background: #fff;
+
+    border-collapse: collapse;
+    border-radius: 8px;
+
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+
+.datatable thead {
+    background-color: #f3f4f6;
+}
+
+.datatable th {
+    text-align: left;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+
+.datatable td {
+    padding: 14px 16px;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+    vertical-align: middle;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 4px;
+    text-decoration: none;
+
+    padding: 6px 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+
+.btnedit {
+    background-color: #4caf50;
+    color: white;
+}
+
+.btnedit:hover {
+    background-color: #43a047;
+}
+
+
+.btndelete {
+    background-color: #f44336;
+    color: white;
+}
+
+.btndelete:hover {
+    background-color: #e53935;
+}
+
+/* ===== MODAL BACKDROP ===== */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 9999;
+}
+
+/* ===== MODAL BOX ===== */
+.modal-content {
+    background: #fff;
+    width: 480px;
+    max-width: 95%;
+    margin: 80px auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+/* ===== HEADER ===== */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 22px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.close {
+    font-size: 22px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* ===== BODY ===== */
+.modal-body {
+    padding: 20px 22px;
+}
+
+/* ===== FORM ===== */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #444;
+}
+
+.form-input,
+select {
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.form-input:focus,
+select:focus {
+    outline: none;
+    border-color: #4caf50;
+}
+
+/* two-column row */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+/* ===== FOOTER ===== */
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 10px;
+}
+
+/* ===== BUTTONS ===== */
+.cancelbtn,.addbtn {
+    font-size: 14px;
+
+    flex: 1;
+    padding: 10px;
+    
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    cursor: pointer;
+    
+}
+
+.cancelbtn{
+    background-color: #f9f9f9;
+}
+
+.addbtn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+}
+
+.addbtn:hover {
+    background-color: #43a047;
+}
+
+.cancelbtn:hover {
+    background: #eee;
+}
+
+/* End rewards.php */
+
+
+
+
+
+
+
 
 .cards{
     display: flex;
@@ -177,3 +441,127 @@
 h1.items{
     margin-top: 10px;
 }
+
+
+/* Start partners.php */
+.main{
+    flex: 1;
+    padding: 30px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.adduser{
+    background-color: #88bfa7;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.adduser:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1);
+}
+
+.search-box {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+
+    border: 1px solid #aaa;
+    border-radius: 4px;
+
+    padding: 10px 12px;
+    margin-bottom: 24px;
+}
+
+.search-box i {
+    margin-right: 10px;
+    color: #666;
+}
+
+.search-box input {
+    width: 100%;
+    font-size: 14px;
+
+    border: none;
+    outline: none;
+}
+
+.partners {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 20px;
+}
+
+.partner-card {
+    width: calc(33.333% - 14px);
+
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+
+    padding: 16px;
+}
+
+
+.partner-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.partner-card .type {
+    display: block;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.partner-card p {
+    font-size: 13px;
+    margin: 10px 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 16px;
+}
+
+.btn-outline {
+    background-color: blue;
+    color: #fff;
+    font-size: 13px;
+    text-decoration: none;
+
+    border: none;
+    border-radius: 20px;
+    
+    padding: 6px 14px;
+    cursor: pointer;
+}
+
+.btndelete {
+    background-color: #c62828;
+}
+
+.btn-outline:hover {
+    box-shadow: 8px 8px 5px lightblue;
+}
+
+
+
+/* End partners.php */
