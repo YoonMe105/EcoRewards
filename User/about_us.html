@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EcoRewards | About Us</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+/* ================= ABOUT US ================= */
+.back-btn{
+    position:absolute;
+    left:16px;
+    top:50%;
+    width:16px;
+    height:16px;
+    border-left:2px solid white;
+    border-bottom:2px solid white;
+    transform:translateY(-50%) rotate(45deg);
+    cursor:pointer;
+}
+.about-wrapper{
+    width:100%;
+    max-width:none;
+    margin:0;
+    padding:24px 40px;
+}
+
+/* TOP SECTION */
+.about-top{
+    display:flex;
+    gap:20px;
+    align-items:center;
+    margin-bottom:24px;
+}
+
+.about-logo{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    overflow:hidden;
+    flex-shrink:0;
+}
+
+.about-logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.about-title{
+    font-size:32px;
+    font-weight:700;
+    margin: 0px;
+    line-height:1.2;
+}
+
+.about-desc-desktop{
+    font-size:16px;
+    line-height:1.8;
+    color:#333;
+}
+
+.about-desc-mobile{
+    display:none;
+    font-size:14px;
+    line-height:1.6;
+    color:#333;
+}
+
+/* BIG IMAGE */
+.about-image{
+    width:100%;
+    height:390px;
+    background:#ddd;
+    margin:40px 0;
+    overflow:hidden;
+}
+
+.about-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* BOTTOM 3 COLUMNS */
+.about-columns{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+}
+
+.about-box h3{
+    font-size:18px;
+    margin-bottom:12px;
+}
+
+.about-box p,
+.about-box li{
+    font-size:14px;
+    line-height:1.7;
+    color:#444;
+}
+
+.about-box ul{
+    padding-left:18px;
+}
+
+.about-box ol{
+    padding-left:18px;
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+
+    .about-wrapper{
+        padding:16px;
+    }
+
+    .about-logo{
+        width:80px;
+        height:80px;
+    }
+
+    .about-title{
+        font-size:22px;
+        overflow: right;
+    }
+
+    .about-desc-desktop{
+        display:none;
+    }
+
+    .about-desc-mobile{
+        display:block;
+        margin-top: 12px;
+    }
+
+    .about-image{
+        height:200px;
+        margin:24px 0;
+    }
+
+    .about-columns{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER (SAME AS OTHERS) -->
+<header class="header">
+    <div class="header-inner">
+        <a href="php/homepage.php" class="back-btn" aria-label="Back"></a>
+    </div>
+</header>
+
+<!-- CONTENT -->
+<div class="about-wrapper">
+
+    <!-- TOP SECTION -->
+    <div class="about-top">
+
+        <div class="about-logo">
+            <img src="image/logo.png" alt="EcoRewards Logo">
+        </div>
+
+        <div class="about-title">EcoRewards</div>
+
+        </div>
+
+<!-- DESCRIPTION BELOW LOGO + TITLE -->
+<div class="about-desc-desktop">
+    EcoRewards is a dedicated sustainability rewards platform developed exclusively
+    for Asia Pacific University (APU) students and staff. The platform is designed
+    to encourage environmentally responsible behaviour across campus by transforming
+    everyday eco-friendly actions into meaningful rewards.
+
+    <br><br>
+    Through EcoRewards, users can submit verified eco-friendly activities such as
+    recycling, participation in sustainability initiatives, and involvement in campus
+    environmental programs. Each approved submission earns eco points, which can be
+    accumulated over time and redeemed for rewards available within the APU campus
+    ecosystem.
+
+    <br><br>
+    By combining digital tracking, reward incentives, and community engagement,
+    EcoRewards aims to foster a long-term culture of sustainability within APU while
+    making environmental responsibility both rewarding and accessible.
+</div>
+
+<div class="about-desc-mobile">
+    EcoRewards is a sustainability rewards platform exclusively for APU students and staff.
+    Users submit eco-friendly actions, earn eco points, and redeem rewards within the APU campus.
+</div>
+
+
+    <!-- BIG IMAGE -->
+    <div class="about-image">
+        <img src="image/about.jpg" alt="EcoRewards Activity Image">
+    </div>
+
+    <!-- BOTTOM SECTION -->
+    <div class="about-columns">
+
+        <!-- MISSION -->
+        <div class="about-box">
+            <h3>Mission Statement:</h3>
+            <p>
+                Our mission is to cultivate a sustainable campus culture at APU by motivating
+                students and staff to actively participate in eco-friendly practices.
+                EcoRewards seeks to bridge awareness and action by rewarding positive
+                environmental behaviour, reinforcing the idea that small actions can create
+                meaningful impact when practiced collectively.
+            </p>
+        </div>
+
+        <!-- HELP USERS -->
+        <div class="about-box">
+            <h3>EcoRewards Helps Users To: </h3>
+            <ul>
+                <li>Track and submit eco-friendly actions easily</li>
+                <li>Earn eco points through verified sustainability efforts</li>
+                <li>Participate in campus eco events and initiatives</li>
+                <li>Redeem rewards available within the APU community</li>
+                <li>Develop long-term environmentally responsible habits</li>
+            </ul>
+        </div>
+
+        <!-- HOW IT WORKS -->
+        <div class="about-box">
+            <h3>How It Works?</h3>
+            <ol>
+                <li>Users perform eco-friendly actions on campus</li>
+                <li>Actions are submitted through the EcoRewards platform</li>
+                <li>Submissions are reviewed and verified</li>
+                <li>Approved actions earn eco points</li>
+                <li>Points can be redeemed for campus rewards</li>
+            </ol>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

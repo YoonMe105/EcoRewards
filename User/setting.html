@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Settings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+.app{
+    width:100%;
+    margin:0;
+}
+.header{
+    position:relative;
+    background:#54a582;
+    height:60px;
+}
+.header-inner{
+    max-width:100%;
+    margin:auto;
+    height: 60px;
+    display:flex;
+    align-items:center;
+    padding:0 12px;
+}
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+.logo-img{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    overflow:hidden;
+}
+.logo-img img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+.logo-text{
+    color:#fff;
+    font-weight:bold;
+}
+.back-btn{
+    position:absolute;
+    left:16px;
+    top:50%;
+    width:16px;
+    height:16px;
+    border-left:2px solid white;
+    border-bottom:2px solid white;
+    transform:translateY(-50%) rotate(45deg);
+    cursor:pointer;
+}
+.settings-list {
+margin-top: 0px;
+}
+
+.settings-item {
+  width: 100%;
+  padding: 16px 20px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.settings-item.danger {
+  background: #ffffff;
+}
+
+/* ARROW */
+.arrow {
+  font-size: 23px;
+}
+
+
+/* ===== LOGOUT POPUP ===== */    
+.popup-box {
+  position: relative;
+}
+
+.popup-text {
+  font-size: 18px;
+  margin: 40px 0 30px;
+}
+
+/* CLOSE (X) */
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* LOGOUT BUTTON */
+.logout-btn {
+  padding: 10px 30px;
+  border: none;
+  background: #54a582;
+  color: white;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+/* Remove browser default button styling */
+button.settings-item {
+  appearance: none;
+  -webkit-appearance: none;
+  background: white;
+  border: none;
+  outline: none;
+}
+
+/* Remove focus / active outline (Chrome, Edge, Safari) */
+.settings-item:focus,
+.settings-item:active,
+.settings-item:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.hidden {
+  display: none;
+}
+</style>
+
+</head>
+
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+        <a href="php/homepage.php" class="back-btn" aria-label="Back"></a>
+        <div class="logo-area">
+            <div class="logo-img">
+                <img src="image/logo.png" alt="Logo">
+            </div>
+            <span class="logo">EcoRewards</span>
+        </div>
+    </div>
+</header>
+
+  <!-- SETTINGS LIST -->
+  <div class="settings-list">
+
+    <a href="php/change_pass.php" class="settings-item">
+      Change Password
+      <span class="arrow">›</span>
+    </a>
+
+    <a href="php/change_phoneNo.php" class="settings-item">
+      Change Phone Number
+      <span class="arrow">›</span>
+    </a>
+
+    <button class="settings-item danger" onclick="openLogoutPopup()">
+      Logout
+      <span class="arrow">›</span>
+    </button>
+
+  </div>
+
+  <!-- LOGOUT POPUP -->
+  <div id="logoutPopup" class="popup hidden">
+    <div class="popup-box">
+
+      <button class="popup-close" onclick="closeLogoutPopup()">×</button>
+
+      <p class="popup-text">Confirm Log Out ?</p>
+
+      <button class="logout-btn" onclick="confirmLogout()">Logout</button>
+    </div>
+  </div>
+
+<script>
+  function openLogoutPopup() {
+    document.getElementById("logoutPopup").classList.remove("hidden");
+  }
+
+  function closeLogoutPopup() {
+    document.getElementById("logoutPopup").classList.add("hidden");
+  }
+
+  function confirmLogout() {
+    // change this link 
+    window.location.href = "guest.html";
+  }
+</script>
+</body>
+</html>
