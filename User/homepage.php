@@ -953,7 +953,7 @@ endwhile;
 
 
 <!-- REWARDS -->
-<div class="rewards" onclick="location.href='rewards.html'">
+<div class="rewards" onclick="location.href='reward.php'">
     <span>Rewards</span>
     <span>›</span>
 </div>
