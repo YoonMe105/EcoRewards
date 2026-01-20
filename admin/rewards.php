@@ -133,7 +133,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="cancelbtn" name="closebtn">Cancel</button>
+                            <button type="button" class="cancelbtn" onclick="closeModal()">Cancel</button>
                             <button type="submit" class="addbtn" name="addbtn">Add Reward</button>
                         </div>
 
@@ -172,6 +172,8 @@
                 }
             }
 
+            mysqli_close($dbConn);
+
         ?>
 
 
@@ -193,7 +195,7 @@
             addmodal.style.display = "none";
         }
 
-        closebtn.onclick = function() {
+        function closeModal() {
             addmodal.style.display = "none";
         }
     </script>

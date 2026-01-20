@@ -50,17 +50,17 @@
 
             <li class="link">
                 <i class="fa-solid fa-users"></i>
-                <a href="#">Users</a>
+                <a href="users.php">Users</a>
             </li>
 
             <li class="link">
                 <i class="fa-solid fa-user-tie"></i>
-                <a href="#">Admins</a>
+                <a href="admins.php">Admins</a>
             </li>
 
             <li class="link">
                 <i class="fa-regular fa-user"></i>
-                <a href="#">Profile</a>
+                <a href="profile.php">Profile</a>
             </li>
         </ul>
     </aside>
