@@ -1,0 +1,168 @@
+/* --- Global Container Reset (Keep this) --- */
+* { box-sizing: border-box; }
+
+/* --- 1. Rewards Header & Action Button --- */
+.rewards-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.rewards-header h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.rewards-header .subtitle {
+    margin: 6px 0 0 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.create-btn {
+    background: #10b981;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    border: none;
+}
+
+.create-btn:hover {
+    background: #059669;
+    transform: translateY(-1px);
+}
+
+/* --- 2. Statistics Grid --- */
+.reward-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.stat-icon { font-size: 32px; flex-shrink: 0; }
+.stat-label { font-size: 13px; color: #6b7280; font-weight: 500; }
+.stat-value { font-size: 24px; font-weight: 700; margin-top: 4px; color: #111827; }
+
+/* --- 3. Section Titles & Flexible Rewards Grid --- */
+.rewards-section { margin-bottom: 40px; }
+.rewards-section h2 { font-size: 18px; font-weight: 700; margin: 0 0 16px 0; color: #1f2937; }
+
+.rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* --- 4. Individual Reward Cards --- */
+.reward-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #f3f4f6;
+    display: flex;
+    flex-direction: column;
+}
+
+.reward-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+}
+
+.reward-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.reward-badge {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.reward-badge.active { background: #d1fae5; color: #065f46; }
+.reward-badge.upcoming-badge { background: #fef3c7; color: #92400e; }
+.reward-badge.past-badge { background: #fee2e2; color: #7f1d1d; }
+
+.reward-icon { font-size: 40px; text-align: center; margin: 15px 0; }
+.reward-card h3 { font-size: 16px; font-weight: 700; margin: 0 0 8px 0; color: #1f2937; }
+.reward-description { font-size: 13px; color: #6b7280; line-height: 1.5; flex-grow: 1; }
+
+/* --- 5. Mini Stats & Footer --- */
+.reward-stats-mini {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: auto; /* Ensures stats are always at the bottom */
+}
+
+.stat-mini { background: #f9fafb; padding: 8px; border-radius: 8px; text-align: center; }
+.stat-mini .label { display: block; font-size: 11px; color: #9ca3af; margin-bottom: 2px; }
+.stat-mini .value { display: block; font-size: 15px; font-weight: 700; color: #1f2937; }
+
+.reward-footer {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid #f3f4f6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+
+.reward-footer .points-required { font-weight: 700; color: #10b981; }
+
+/* --- 6. FINAL CLEAN RESPONSIVE DESIGN --- */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .reward-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+    .rewards-header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .create-btn { width: 100%; text-align: center; }
+
+    .reward-stats { grid-template-columns: 1fr; }
+
+    .stat-card {
+        flex-direction: row; /* Horizontal is cleaner on phones than vertical */
+        text-align: left;
+    }
+
+    .rewards-grid { grid-template-columns: 1fr; }
+}
