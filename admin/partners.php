@@ -30,76 +30,146 @@
                 </button>
             </div>
 
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Search by name......">
-            </div>
+            <form action="" method="post" class="searchform">
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" name="search" placeholder="Search by name......">
+                    </div>
+
+                    <button type="submit" class="btnsearch" name="btnsearch">Search</button>
+                </div>
+                
+            </form>
+
+            <?php
+                include 'conn.php';
+
+                
+
+            ?>
+            
 
             <div class="partners">
-                <div class="partner-card">
-                    <h3>Bila Bila</h3>
-                    <span class="type">Convenience Store</span>
 
-                    <p><i class="fa-regular fa-envelope"></i> bila2@gmail.com</p>
-                    <p><i class="fa-solid fa-phone"></i> +60112898582</p>
+                <?php 
 
-                    <div class="card-actions">
-                        <button class="btn-outline">Edit</button>
-                        <button class="btn-outline danger">Delete</button>
-                    </div>
-                </div>
+                    
 
-                <div class="partner-card">
-                    <h3>Bila Bila</h3>
-                    <span class="type">Convenience Store</span>
+                    // if(isset($_POST['btnsearch'])){
+                    //     $search_key = isset($_POST['search'])? $_POST['search']: '';
 
-                    <p><i class="fa-regular fa-envelope"></i> bila2@gmail.com</p>
-                    <p><i class="fa-solid fa-phone"></i> +60112898582</p>
+                    //     echo "<script>alert('".$search_key."');</script>";
 
-                    <div class="card-actions">
-                        <button class="btn-outline">Edit</button>
-                        <button class="btn-outline danger">Delete</button>
-                    </div>
-                </div>
+                    //     if($search_key == NULL){
+                    //         echo "<script>alert('Please key in your search key first!');</script>";
+                    //     }else{
+                    //         $sql="SELECT* FROM partners WHERE name LIKE '%".$search_key. "%'"; 
+                    //     echo "<script>alert('".$sql."');</script>";
 
-                <div class="partner-card">
-                    <h3>Bila Bila</h3>
-                    <span class="type">Convenience Store</span>
+                    //         $result=mysqli_query($dbConn, $sql); 
 
-                    <p><i class="fa-regular fa-envelope"></i> bila2@gmail.com</p>
-                    <p><i class="fa-solid fa-phone"></i> +60112898582</p>
+                    //         if(mysqli_num_rows($result) <= 0) 
+                    //         { 
+                    //             echo "<script>alert('No Result!');</script>"; 
+                    //         } 
+                    //         else 
+                    //         { 
+                    //             $sql = "Select * From partners";
+                    //             $result = mysqli_query($dbConn,$sql);
 
-                    <div class="card-actions">
-                        <button class="btn-outline">Edit</button>
-                        <button class="btn-outline danger">Delete</button>
-                    </div>
-                </div>
+                    //             if(mysqli_num_rows($result) <= 0){
+                    //                 die("<script>alert('No data from database!);</script>");
+                    //             }
 
-                <div class="partner-card">
-                    <h3>Bila Bila</h3>
-                    <span class="type">Convenience Store</span>
+                    //             while($rows = mysqli_fetch_array($result)){
+                    //                 echo "<div class='partner-card'>";
+                    //                 echo "<img src='".$rows['company_image']."' alt='Company Profile' class='company_image' />";
+                    //                 echo "<h3>".$rows['name']."</h3>";
+                    //                 // echo "<span class='type'>".$rows['name']."</span>";
+                    //                 echo "<p><i class='fa-regular fa-envelope'></i> ".$rows['email']."</p>";
+                    //                 echo "<p><i class='fa-solid fa-phone'></i>".$rows['phone']."</td>";
+                    //                 echo "<p><i class='fa-solid fa-location-dot'></i>".$rows['address']."</td>";                       
+                                    
 
-                    <p><i class="fa-regular fa-envelope"></i> bila2@gmail.com</p>
-                    <p><i class="fa-solid fa-phone"></i> +60112898582</p>
+                    //                 echo "<div class='card-actions'>
+                    //                     <a href='editpartners.php?id=".$rows['id']."' class='btnpartners btnedit w-50'>Edit</a>
+                    //                     <a href='deletepartners.php?id=".$rows['id']."' class='btnpartners btndelete w-50'>Delete</a>
+                    //                 </div>";
 
-                    <div class="card-actions">
-                        <button class="btn-outline">Edit</button>
-                        <button class="btn-outline danger">Delete</button>
-                    </div>
-                </div>
+                    //                 echo "</div>";
 
-                <div class="partner-card">
-                    <h3>Bila Bila</h3>
-                    <span class="type">Convenience Store</span>
+                    //             }
+                    //         }
 
-                    <p><i class="fa-regular fa-envelope"></i> bila2@gmail.com</p>
-                    <p><i class="fa-solid fa-phone"></i> +60112898582</p>
+                    //     }
 
-                    <div class="card-actions">
-                        <button class="btn-outline">Edit</button>
-                        <button class="btn-outline danger">Delete</button>
-                    </div>
-                </div>
+                    // }else{
+                    //     $sql = "Select * From partners";
+                    //     $result = mysqli_query($dbConn,$sql);
+
+                    //     if(mysqli_num_rows($result) <= 0){
+                    //         die("<script>alert('No data from database!);</script>");
+                    //     }
+
+                    //     while($rows = mysqli_fetch_array($result)){
+                    //         echo "<div class='partner-card'>";
+                    //         echo "<img src='".$rows['company_image']."' alt='Company Profile' class='company_image' />";
+                    //         echo "<h3>".$rows['name']."</h3>";
+                    //         // echo "<span class='type'>".$rows['name']."</span>";
+                    //         echo "<p><i class='fa-regular fa-envelope'></i> ".$rows['email']."</p>";
+                    //         echo "<p><i class='fa-solid fa-phone'></i>".$rows['phone']."</td>";
+                    //         echo "<p><i class='fa-solid fa-location-dot'></i>".$rows['address']."</td>";                       
+                            
+
+                    //         echo "<div class='card-actions'>
+                    //             <a href='editpartners.php?id=".$rows['id']."' class='btnpartners btnedit w-50'>Edit</a>
+                    //             <a href='deletepartners.php?id=".$rows['id']."' class='btnpartners btndelete w-50'>Delete</a>
+                    //         </div>";
+
+                    //         echo "</div>";
+
+                    //     }
+
+                    // }
+
+                    //haven't finished
+
+
+                    $sql = "Select * From partners";
+                        $result = mysqli_query($dbConn,$sql);
+
+                        if(mysqli_num_rows($result) <= 0){
+                            die("<script>alert('No data from database!);</script>");
+                        }
+
+                        while($rows = mysqli_fetch_array($result)){
+                            echo "<div class='partner-card'>";
+                            echo "<img src='".$rows['company_image']."' alt='Company Profile' class='company_image' />";
+                            echo "<h3>".$rows['name']."</h3>";
+                            // echo "<span class='type'>".$rows['name']."</span>";
+                            echo "<p><i class='fa-regular fa-envelope'></i> ".$rows['email']."</p>";
+                            echo "<p><i class='fa-solid fa-phone'></i>".$rows['phone']."</td>";
+                            echo "<p><i class='fa-solid fa-location-dot'></i>".$rows['address']."</td>";                       
+                            
+
+                            echo "<div class='card-actions'>
+                                <a href='editpartners.php?id=".$rows['id']."' class='btnpartners btnedit w-50'>Edit</a>
+                                <a href='deletepartners.php?id=".$rows['id']."' class='btnpartners btndelete w-50'>Delete</a>
+                            </div>";
+
+                            echo "</div>";
+
+                        }
+                    
+
+                    
+
+                    mysqli_close($dbConn);
+
+                ?>
+
+                
             </div>
         </main>
 
@@ -112,7 +182,7 @@
                     <span class="close">&times;</span>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="get">
+                    <form action="" method="post">
                         <div class="form-group">
                             <label for="name">Partner Company Name</label>
                             <input type="text" class="form-input" name="name" placeholder="Enter Partner Company Name" />
@@ -126,7 +196,7 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="contactperson">Contact Person</label>
-                                <input type="email" class="form-input" name="contactperson" placeholder="Enter Contact Person" />
+                                <input type="text" class="form-input" name="contactperson" placeholder="Enter Contact Person" />
                             </div>
 
                             <div class="form-group">
@@ -150,8 +220,8 @@
                         
 
                         <div class="modal-footer">
-                            <button type="button" class="cancelbtn">Cancel</button>
-                            <button type="submit" class="addbtn">Add Reward</button>
+                            <button type="button" class="cancelbtn" name="cancelbtn">Cancel</button>
+                            <button type="submit" class="addbtn" name="addbtn">Add Reward</button>
                         </div>
 
                     </form>
@@ -160,6 +230,52 @@
             </div>
         </div>
         <!-- End Add Reward Model -->
+
+        <?php
+
+            include 'conn.php';
+
+            if(isset($_POST['addbtn'])){
+                $name        = $_POST['name'];
+                $email = $_POST['email'];
+                $contactperson  = $_POST['contactperson'];
+                $phone      = $_POST['phno'];
+                $address    = $_POST['address'];
+
+                $profileName = $_FILES['profile']['name'];
+                $tmpName     = $_FILES['profile']['tmp_name'];
+
+                if (!empty($profileName)) {
+                    $folder = "assets/img/";
+                    $newName = basename($profileName);
+                    move_uploaded_file($tmpName, $folder . $newName);
+                    $profilePath = $folder . $newName;
+                } else {
+                    $profilePath = "assets/img/default-profile.png";
+                }
+                
+                echo "<script>$name,$phone,$profileName</script>";
+
+                // $sql = "INSERT INTO partners
+                // ( `name`, `company_image`, `email`, `contact_person`,'phone','address')
+                //         VALUES 
+                //         ('$name','$profilePath', '$email', '$contactperson' , '$phone', '$address')";
+
+                // if (mysqli_query($dbConn, $sql)) {
+                //     echo "<script>alert('Partner added successfully!');</script>";
+                //     echo "<script>window.location.href='partners.php';</script>";  
+                // } else {
+                //     echo "Error: " . mysqli_error($dbConn);
+                // }
+            }
+
+            if(isset($_POST['cancelbtn'])){
+                echo "<script>window.location.href='partners.php';</script>";  
+            }
+
+            //haven't tested
+
+        ?>
 
 
     </div>

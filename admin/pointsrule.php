@@ -62,8 +62,8 @@
                     echo "<td>".$rows['created_at']."</td>";
 
                     echo "<td class='action-buttons'>
-                        <a href='edit.php?id=".$rows['id']."' class='btn-outline btnedit'>Edit</a>
-                        <a href='delete.php?id=".$rows['id']."' class='btn-outline btndelete'>Delete</a>
+                        <a href='editrule.php?id=".$rows['id']."' class='btn-outline btnedit'>Edit</a>
+                        <a href='deleterule.php?id=".$rows['id']."' class='btn-outline btndelete'>Delete</a>
                     </td>";
 
 
@@ -82,7 +82,7 @@
                     <span class="close">&times;</span>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="get">
+                    <form action="" method="post">
                         <div class="form-group">
                             <label for="type">Material Type</label>
                             <input type="text" class="form-input" name="type" placeholder="Enter Material Type" />
@@ -111,8 +111,8 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="cancelbtn btn">Cancel</button>
-                            <button type="submit" class="addbtn btn">Add Rule</button>
+                            <button type="button" class="cancelbtn btn" onclick="closeModal()">Cancel</button>
+                            <button type="submit" class="addbtn btn" name="addbtn">Add Rule</button>
                         </div>
 
                     </form>
@@ -122,6 +122,30 @@
         </div>
         <!-- End Add Rule Model -->
 
+        <?php
+
+            include 'conn.php';
+
+            if(isset($_POST['addbtn'])){
+                $type        = $_POST['type'];
+                $unit = $_POST['unit'];
+                $points     = $_POST['points'];
+                $status      = $_POST['status'];
+
+                $sql = "INSERT INTO point_rules
+                ( `material_type`, `unit`, `points`, `status`)
+                        VALUES 
+                        ('$type','$unit', '$points', '$status')";
+
+                if (mysqli_query($dbConn, $sql)) {
+                    echo "<script>alert('Points added successfully!');</script>";
+                    echo "<script>window.location.href='pointsrule.php';</script>";  
+                } else {
+                    echo "Error: " . mysqli_error($dbConn);
+                }
+            }
+
+        ?>
 
     </div>
     
@@ -140,6 +164,11 @@
         spanclose.onclick = function() {
             addrulemodal.style.display = "none";
         }
+
+        function closeModal() {
+            addrulemodal.style.display = "none";
+        }
+
     </script>
 </body>
 </html>

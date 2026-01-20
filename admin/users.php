@@ -1,3 +1,29 @@
+<?php
+include 'conn.php';
+
+
+$view_id = null;
+$event = null;
+$showModal = false;
+
+if (isset($_GET['action']) && $_GET['action'] === 'view' && isset($_GET['id'])) {
+    $view_id = intval($_GET['id']);
+
+    $sql = "SELECT *
+            FROM users
+            WHERE id = $view_id
+            LIMIT 1";
+
+    $result = mysqli_query($dbConn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $user = mysqli_fetch_assoc($result);
+        $showModal = true;
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +50,7 @@
                 </div>
                 
 
-                <button class="addusers" id="addusers">
+                <button class="adduser" id="addusers">
                     <i class="fa-solid fa-plus"></i>
                      Add users
                 </button>
@@ -132,25 +158,80 @@
             include 'conn.php';
 
             if(isset($_POST['addbtn'])){
-                $name        = $_POST['name'];
+                $name    = $_POST['name'];
                 $email = $_POST['email'];
                 $phone     = $_POST['phone'];
                 $role      = $_POST['role'];
 
-                // $sql = "INSERT INTO rewards
-                // ( `partners_id`, `name`, `description`, `quantity`, `points_required`, `expired_at`, `status`)
-                //         VALUES 
-                //         ('$partner','$name', '$description',   '$qty','$points', '$expireddate', '$status')";
+                $defaultprofile = './assets/img/user.jpg';
 
-                // if (mysqli_query($dbConn, $sql)) {
-                //     echo "<script>alert('Reward added successfully!');</script>";
-                //     echo "<script>window.location.href='rewards.php';</script>";  
-                // } else {
-                //     echo "Error: " . mysqli_error($dbConn);
-                // }
+                $sql = "INSERT INTO users
+                ( `fullname`, `profile_image`, `email`, `phone`, `role`)
+                        VALUES 
+                        ('$name','$defaultprofile', '$email',   '$phone','$role')";
+
+                if (mysqli_query($dbConn, $sql)) {
+                    echo "<script>alert('User added successfully!');</script>";
+                    echo "<script>window.location.href='users.php';</script>";  
+                } else {
+                    echo "Error: " . mysqli_error($dbConn);
+                }
             }
 
         ?>
+
+
+        <?php if ($event) { ?>
+        <!-- start view details -->
+        <div class="modal" id="viewUserModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>User Details</h3>
+                    <button class="close-btn" onclick="closeModal()">✕</button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="user-header">
+                        <div class="avatar"></div>
+                        <div>
+                            <h2>Jane Smith</h2>
+                            <span class="status active">Active</span>
+                        </div>
+                    </div>
+
+                    <div class="stats">
+                        <div class="stat-box">
+                            <small>Points</small>
+                            <strong>100</strong>
+                        </div>
+                        <div class="stat-box">
+                            <small>Items Recycled</small>
+                            <strong>20</strong>
+                        </div>
+                        <div class="stat-box">
+                            <small>Member Since</small>
+                            <strong>Jan 10, 2025</strong>
+                        </div>
+                    </div>
+
+                    <div class="contact">
+                        <p><i class="fa-solid fa-envelope"></i> smith@email.com</p>
+                        <p><i class="fa-solid fa-phone"></i> 01158697836</p>
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn-outline">Add 5 Points</button>
+                        <button class="btn-outline">Add 10 Points</button>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn cancel" onclick="closeModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        <!-- haven't finished -->
 
         <div class="modal" id="viewUserModal">
             <div class="modal-box">

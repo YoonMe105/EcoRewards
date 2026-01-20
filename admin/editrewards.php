@@ -1,24 +1,24 @@
 <?php
 
-include "conn.php"; 
-$id=intval($_GET['id']);
+    include "conn.php"; 
+    $id=intval($_GET['id']);
 
-$sql="Select * FROM rewards WHERE id=$id"; 
-$result=mysqli_query($dbConn, $sql);
+    $sql="Select * FROM rewards WHERE id=$id"; 
+    $result=mysqli_query($dbConn, $sql);
 
-if($rows = mysqli_fetch_array($result)){
-    $name = $rows['name'];
-    $partners = $rows['partners_id'];
-    $description = $rows['description'];
-    $qty = $rows['quantity'];
-    $points = $rows['points_required'];
-    $expireddate = $rows['expired_at'];
-    $status = $rows['status'];
-}else{
-    echo "<script>alert('No data from db!');</script>"; 
-    echo "<script>window.location.href='view.php';</script>"; 
+    if($rows = mysqli_fetch_array($result)){
+        $name = $rows['name'];
+        $partners = $rows['partners_id'];
+        $description = $rows['description'];
+        $qty = $rows['quantity'];
+        $points = $rows['points_required'];
+        $expireddate = $rows['expired_at'];
+        $status = $rows['status'];
+    }else{
+        echo "<script>alert('No data from db!');</script>"; 
+        echo "<script>window.location.href='rewards.php';</script>"; 
 
-}
+    }
 ?>
 
 <!DOCTYPE html>
@@ -29,25 +29,23 @@ if($rows = mysqli_fetch_array($result)){
 
     <title>Edit Rewards</title>
     
-    <style>
-        .editform {
-        width: 450px;          /* 🔹 form size */
-        background: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        margin: 40px auto;     /* 🔹 center horizontally */
-    }
-    </style>
+    <link href="./assets/css/formupdate.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
 </head>
 <body>
 
 
     <center>
+        <a href="rewards.php" class="backlink">Back to main page</a>
         <h1>Edit Rewards</h1>
 
         <form action="" method="post" class="editform">
+             <div>
+                <label for="uid">ID</label>
+                <input type="text" name="uid" value="<?php echo $id;?>" readonly />
+            </div>
+                        
+
             <div>
                 <label for="name">Reward Name</label>
                 <input type="text" class="" name="name" value="<?php echo $name;?>"  />
@@ -78,12 +76,13 @@ if($rows = mysqli_fetch_array($result)){
             <div>
                 <div>
                     <label for="exprieddate">Expired Date</label>
-                    <input type="date" class="" name="exprieddate" value="<?php echo $expireddate;?>" />
+                    <input type="date" name="exprieddate" 
+                            value="<?php echo !empty($expireddate) ? date('Y-m-d', strtotime($expireddate)) : ''; ?>" />
                 </div>
 
                 <div>
                     <label for="status">Status</label>
-                    <select name="status">
+                    <select name="status" class="status">
                         <option value="available" <?php if($status == "available") echo "selected"; ?>>
                             Available
                         </option>
@@ -99,11 +98,48 @@ if($rows = mysqli_fetch_array($result)){
                 </div>
             </div>
 
-            
+            <button type="submit" class="update" name="submit">Submit</button>
 
         </form>
     </center>
 
+
+    <?php
+
+        if(isset($_POST['submit'])){
+
+            $uid = $_POST['uid'];
+            $name = $_POST['name'];
+            $partners = $_POST['partner'];
+            $description = $_POST['description'];
+            $qty = $_POST['qty'];
+            $points = $_POST['points'];
+            $expireddate = $_POST['exprieddate'];
+            $status = $_POST['status'];
+
+
+
+            $sql = "UPDATE rewards SET ".
+            "partners_id= '$partners',".
+            "name = '$name',".
+            "description = '$description',".
+            "quantity = '$qty',".
+            "points_required= '$points',".
+            "expired_at= '$expireddate',".
+            "status= '$status' WHERE id = $uid";
+
+            mysqli_query($dbConn,$sql);
+
+            if(mysqli_affected_rows($dbConn)<=0) { 
+                die("<script>alert('Cannot update data!');</script>"); 
+                
+                echo "<script>window.location.href='rewards.php';</script>";
+            } 
+
+            echo "<script>alert('Successfully updated data!');</script>"; 
+            echo "<script>window.location.href='rewards.php';</script>"; 
+                }
+    ?>
 
 
     
