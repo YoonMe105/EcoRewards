@@ -151,7 +151,7 @@ button{
 
 <body>
   <!-- HEADER -->
-  <header class="header">
+<header class="header">
     <div class="header-inner">
         <a href="../setting.html" class="back-btn" aria-label="Back"></a>
         <div class="logo-area">
