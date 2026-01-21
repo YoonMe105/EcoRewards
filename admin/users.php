@@ -1,26 +1,20 @@
 <?php
-include 'conn.php';
+    include 'conn.php';
 
+    $viewUser = null;
+    $showUserModal = false;
 
-$view_id = null;
-$user = null;
-$showModal = false;
+    if (isset($_GET['action'], $_GET['id']) && $_GET['action'] === 'view') {
+        $viewId = (int) $_GET['id'];
 
-if (isset($_GET['action']) && $_GET['action'] === 'view' && isset($_GET['id'])) {
-    $view_id = intval($_GET['id']);
+        $sql = "SELECT * FROM users WHERE id = $viewId LIMIT 1";
+        $result = mysqli_query($dbConn, $sql);
 
-    $sql = "SELECT *
-            FROM users
-            WHERE id = $view_id
-            LIMIT 1";
-
-    $result = mysqli_query($dbConn, $sql);
-
-    if ($result && mysqli_num_rows($result) > 0) {
-        $user = mysqli_fetch_assoc($result);
-        $showModal = true;
+        if ($result && mysqli_num_rows($result) > 0) {
+            $viewUser = mysqli_fetch_assoc($result);
+            $showUserModal = true;
+        }
     }
-}
 
 ?>
 
@@ -155,8 +149,6 @@ if (isset($_GET['action']) && $_GET['action'] === 'view' && isset($_GET['id'])) 
 
         <?php
 
-            include 'conn.php';
-
             if(isset($_POST['addbtn'])){
                 $name    = $_POST['name'];
                 $email = $_POST['email'];
@@ -177,11 +169,59 @@ if (isset($_GET['action']) && $_GET['action'] === 'view' && isset($_GET['id'])) 
                     echo "Error: " . mysqli_error($dbConn);
                 }
             }
-
         ?>
 
 
-        
+        <?php if ($viewUser) { ?>
+        <!-- start view details -->
+        <div class="modal viewModal" id="viewUserModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>User Details</h3>
+                    <button class="close-btn" onclick="closeModal()">✕</button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="user-header">
+                        <div class="avatar">
+                            <img src="<?= $viewUser['profile_image'] ?>" alt="User" class="adminprofile" />
+                        </div>
+                        <div>
+                            <h2><?= $viewUser['fullname']; ?></h2>
+                            <span><?= $viewUser['role']; ?></span>
+                        </div>
+                    </div>
+
+                    <div class="stats">
+                        <div class="stat-box">
+                            <small>Points</small>
+                            <strong><?= $viewUser['user_points']; ?></strong>
+                        </div>
+                        
+                        <div class="stat-box">
+                            <small>Member Since</small>
+                            <strong><?= date('M d, Y', strtotime($viewUser['created_at'])); ?></strong>
+                        </div>
+                    </div>
+
+                    <div class="contact">
+                        <h4>Contact Information</h4>
+                        <p><i class="fa-solid fa-envelope"></i> <?= $viewUser['email']; ?></p>
+                        <p><i class="fa-solid fa-phone"></i> <?= $viewUser['phone']; ?></p>
+                    </div>
+
+                    <div class="actions">
+                        <a href="addpoints.php?id=<?= $viewUser['id']; ?>&points=5" class="btnaddpoint">Add 5 Points</a>
+                        <a href="addpoints.php?id=<?= $viewUser['id']; ?>&points=10" class="btnaddpoint">Add 10 Points</a>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn cancel" onclick="closeModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <?php } ?> 
         <!-- haven't finished -->
 
         
@@ -204,9 +244,12 @@ if (isset($_GET['action']) && $_GET['action'] === 'view' && isset($_GET['id'])) 
             addmodal.style.display = "none";
         }
 
-        <?php if ($showModal) { ?>
-            document.getElementById('viewUserModal').style.display = 'block';
-        <?php } ?>
+        <?php if ($showUserModal) { ?>
+            window.onload = function () {
+                document.getElementById('viewUserModal').style.display = 'flex';
+            };
+            <?php } ?>
+
 
         function closeModal() {
             window.location.href = 'users.php';
