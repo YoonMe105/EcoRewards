@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2026 at 01:23 PM
+-- Generation Time: Jan 21, 2026 at 01:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,11 +44,11 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `fullname`, `profile_image`, `password`, `email`, `phone`, `status`, `created_at`) VALUES
 (1, 'Jame1', 'img/profile.png', 'd71f30a340bf5207f02bad96401a1275', 'jame1@gmail.com', '011457881', 'inactive', '2025-12-19'),
-(2, 'Kirei', './assets/img/admin.jpg', '21232f297a57a5a743894a0e4a801fc3', 'kirei@gmail.com', '011f44', 'active', '2025-12-19'),
-(3, 'test', '', '21232f297a57a5a743894a0e4a801fc3', 'kk@gmail.com', '01154786', 'active', '2026-01-13'),
-(4, 'test', 'assets/img/1768273200_admin.jpg', '21232f297a57a5a743894a0e4a801fc3', 'test1@gmail.com', '0145632987', 'active', '2026-01-13'),
-(5, 'test2', 'assets/img/admin.jpg', '21232f297a57a5a743894a0e4a801fc3', 'test2@gmail.com', '01123654789', 'active', '2026-01-13'),
-(7, 'test', 'assets/img/default-profile.png', '21232f297a57a5a743894a0e4a801fc3', 'kk@gmail.com', '01154786', 'active', '2026-01-20');
+(2, 'Kirei', './assets/img/admin.jpg', '$2y$10$ymblMKvFZpGm2MBCY4HYWusEj.rQpprvvsDjm8W8yy.CutOPycQV6', 'kirei@gmail.com', '011f44', 'active', '2025-12-19'),
+(3, 'test', '', '$2y$10$ymblMKvFZpGm2MBCY4HYWusEj.rQpprvvsDjm8W8yy.CutOPycQV6', 'kk@gmail.com', '01154786', 'active', '2026-01-13'),
+(4, 'test', 'assets/img/1768273200_admin.jpg', '$2y$10$ymblMKvFZpGm2MBCY4HYWusEj.rQpprvvsDjm8W8yy.CutOPycQV6', 'test1@gmail.com', '0145632987', 'active', '2026-01-13'),
+(5, 'test2', 'assets/img/admin.jpg', '$2y$10$ymblMKvFZpGm2MBCY4HYWusEj.rQpprvvsDjm8W8yy.CutOPycQV6', 'test2@gmail.com', '01123654789', 'active', '2026-01-13'),
+(7, 'test', 'assets/img/default-profile.png', '$2y$10$ymblMKvFZpGm2MBCY4HYWusEj.rQpprvvsDjm8W8yy.CutOPycQV6', 'kk@gmail.com', '01154786', 'active', '2026-01-20');
 
 --
 -- Indexes for dumped tables

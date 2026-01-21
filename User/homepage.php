@@ -844,7 +844,7 @@ $leaders = $conn->query("
 <div class="eco-card">
 
     <!-- Background Image -->
-    <img src="./image/hero.jpg?v=<?= filemtime("./image/hero.jpg") ?>" alt="Eco Image" class="eco-bg">
+    <img src="../image/hero.jpg?v=<?= filemtime("../image/hero.jpg") ?>" alt="Eco Image" class="eco-bg">
 
     <div class="eco-content">
     <h2>EcoRewards</h2>

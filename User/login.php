@@ -4,8 +4,8 @@ require "db.php";
 $error = "";
 
 /* Change image names here only */
-$SIDE_IMAGE = "./image/side.jpg?v=" . filemtime("./image/side.jpg");
-$LOGO_IMAGE = "./image/logo.png";   // logo image
+$SIDE_IMAGE = "../image/side.jpg?v=" . filemtime("../image/side.jpg");
+$LOGO_IMAGE = "../image/logo.png";   // logo image
 
 /* Already logged in */
 if (isset($_SESSION['user_id'])) {
@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
+     /* 1️⃣ Check USER */
     $stmt = $conn->prepare("SELECT id, password FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -29,12 +30,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['user_id'] = $user['id'];
         header("Location: homepage.php");
         exit;
-    } else {
-        $error = "Invalid email or password";
     }
+    
+    /* 2️⃣ Check ADMIN */
+    $stmt = $conn->prepare("SELECT id, password FROM admins WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $admin = $result->fetch_assoc();
+
+    if ($admin && password_verify($password, $admin['password'])) {
+        $_SESSION['admin_id'] = $admin['id'];
+        header("Location: admin_homepage.php");
+        exit;
+    }
+
+    /* 3️⃣ Check PARTNER */
+    $stmt = $conn->prepare("SELECT id, password FROM partners WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $partner = $result->fetch_assoc();
+
+    if ($partner && password_verify($password, $partner['password'])) {
+        $_SESSION['partner_id'] = $partner['id'];
+        header("Location: partner_homepage.php");
+        exit;
+    }
+    $error = "Invalid email or password";
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
