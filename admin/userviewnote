@@ -1,0 +1,47 @@
+<!-- <?php if ($user) { ?>
+        <!-- start view details -->
+        <div class="modal viewModal" id="viewUserModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>User Details</h3>
+                    <button class="close-btn" onclick="closeModal()">✕</button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="user-header">
+                        <div class="avatar"></div>
+                        <div>
+                            <h2><?= $user['fullname']; ?></h2>
+                            <span class="status active"><?= $user['role']; ?></span>
+                        </div>
+                    </div>
+
+                    <div class="stats">
+                        <div class="stat-box">
+                            <small>Points</small>
+                            <strong><?= $user['user_points']; ?></strong>
+                        </div>
+                        
+                        <div class="stat-box">
+                            <small>Member Since</small>
+                            <strong><?= $user['created_at']; ?>5</strong>
+                        </div>
+                    </div>
+
+                    <div class="contact">
+                        <p><i class="fa-solid fa-envelope"></i> <?= $user['email']; ?></p>
+                        <p><i class="fa-solid fa-phone"></i> <?= $user['phone']; ?></p>
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn-outline">Add 5 Points</button>
+                        <button class="btn-outline">Add 10 Points</button>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn cancel" onclick="closeModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <?php } ?> -->

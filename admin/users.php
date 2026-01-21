@@ -3,7 +3,7 @@ include 'conn.php';
 
 
 $view_id = null;
-$event = null;
+$user = null;
 $showModal = false;
 
 if (isset($_GET['action']) && $_GET['action'] === 'view' && isset($_GET['id'])) {
@@ -56,7 +56,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'view' && isset($_GET['id'])) 
                 </button>
             </div>
 
-            <table class="rewardstable">
+            <table class="datatable">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -89,9 +89,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'view' && isset($_GET['id'])) 
                     echo "<td>".$rows['user_points']."</td>";
 
                     echo "<td class='action-buttons'>
-                        <a href='' class='btn-outline btnview' onclick='openViewModal(".$rows['id'].")'>View</a>
-                        <a href='editrewards.php?id=".$rows['id']."' class='btn-outline btnedit'>Edit</a>
-                        <a href='deleterewards.php?id=".$rows['id']."' class='btn-outline btndelete'>Delete</a>
+                        <a href='?action=view&id=".$rows['id']."' class='btn-outline btnview'>View</a>
+                        <a href='edituser.php?id=".$rows['id']."' class='btn-outline btnedit'>Edit</a>
+                        <a href='deleteuser.php?id=".$rows['id']."' class='btn-outline btndelete'>Delete</a>
                     </td>";
 
                 }
@@ -181,114 +181,19 @@ if (isset($_GET['action']) && $_GET['action'] === 'view' && isset($_GET['id'])) 
         ?>
 
 
-        <?php if ($event) { ?>
-        <!-- start view details -->
-        <div class="modal" id="viewUserModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>User Details</h3>
-                    <button class="close-btn" onclick="closeModal()">✕</button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="user-header">
-                        <div class="avatar"></div>
-                        <div>
-                            <h2>Jane Smith</h2>
-                            <span class="status active">Active</span>
-                        </div>
-                    </div>
-
-                    <div class="stats">
-                        <div class="stat-box">
-                            <small>Points</small>
-                            <strong>100</strong>
-                        </div>
-                        <div class="stat-box">
-                            <small>Items Recycled</small>
-                            <strong>20</strong>
-                        </div>
-                        <div class="stat-box">
-                            <small>Member Since</small>
-                            <strong>Jan 10, 2025</strong>
-                        </div>
-                    </div>
-
-                    <div class="contact">
-                        <p><i class="fa-solid fa-envelope"></i> smith@email.com</p>
-                        <p><i class="fa-solid fa-phone"></i> 01158697836</p>
-                    </div>
-
-                    <div class="actions">
-                        <button class="btn-outline">Add 5 Points</button>
-                        <button class="btn-outline">Add 10 Points</button>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button class="btn cancel" onclick="closeModal()">Cancel</button>
-                </div>
-            </div>
-        </div>
-        <?php } ?>
+        
         <!-- haven't finished -->
 
-        <div class="modal" id="viewUserModal">
-            <div class="modal-box">
-                <div class="modal-header">
-                    <h3>User Details</h3>
-                    <span class="close" onclick="closeModal('viewUserModal')">&times;</span>
-                </div>
-
-                <div class="user-header">
-                    <div class="avatar">img</div>
-                    <div>
-                        <h2>Jane Smith</h2>
-                        <span class="status active">Active</span>
-                    </div>
-                </div>
-
-                <div class="stats">
-                    <div class="stat-box">
-                        <small>Points</small>
-                        <strong>100</strong>
-                    </div>
-                    <div class="stat-box">
-                        <small>Items Recycled</small>
-                        <strong>20</strong>
-                    </div>
-                    <div class="stat-box">
-                        <small>Member Since</small>
-                        <strong>Jan 10, 2025</strong>
-                    </div>
-                </div>
-
-                <div class="contact">
-                    <p><i class="fa-solid fa-envelope"></i> smith@email.com</p>
-                    <p><i class="fa-solid fa-phone"></i> 01158697836</p>
-                </div>
-
-                <div class="actions">
-                    <button class="btn-outline">Add 5 Points</button>
-                    <button class="btn-outline">Add 10 Points</button>
-                </div>
-
-                <button class="btn-cancel" onclick="closeModal('viewUserModal')">
-                    Cancel
-                </button>
-            </div>
-        </div>
+        
 
 
 
     </div>
     
-    <script src="./assets/js/app.js" type="text/javascript"></script>
     <script type="text/javascript">
         var adduserbtn = document.getElementById('addusers');
         var addmodal = document.getElementById('myAddUserModal');
         var spanclose = document.getElementsByClassName('close')[0];
-
 
         adduserbtn.onclick = function() {
             addmodal.style.display = "block";
@@ -299,10 +204,18 @@ if (isset($_GET['action']) && $_GET['action'] === 'view' && isset($_GET['id'])) 
             addmodal.style.display = "none";
         }
 
-        
+        <?php if ($showModal) { ?>
+            document.getElementById('viewUserModal').style.display = 'block';
+        <?php } ?>
+
+        function closeModal() {
+            window.location.href = 'users.php';
+        }
 
 
     </script>
+    <script src="./assets/js/app.js" type="text/javascript"></script>
+
 
 </body>
 </html>

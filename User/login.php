@@ -4,8 +4,8 @@ require "db.php";
 $error = "";
 
 /* Change image names here only */
-$SIDE_IMAGE = "../image/side.jpg?v=" . filemtime("../image/side.jpg");
-$LOGO_IMAGE = "../image/logo.png";   // logo image
+$SIDE_IMAGE = "./image/side.jpg?v=" . filemtime("./image/side.jpg");
+$LOGO_IMAGE = "./image/logo.png";   // logo image
 
 /* Already logged in */
 if (isset($_SESSION['user_id'])) {
@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

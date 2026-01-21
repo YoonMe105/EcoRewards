@@ -413,8 +413,34 @@ select:focus {
     background: #eee;
 }
 
+/* index.php */
 
+.cards{
+    display: flex;
+    justify-content: space-between;
 
+    margin:20px;
+}
+
+.card {
+    width: 270px;
+    height:150px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px;
+
+    transition: 0.3s;
+}
+
+.card:hover {
+     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* end index.php */
 
 /* Start partners.php */
 .main{

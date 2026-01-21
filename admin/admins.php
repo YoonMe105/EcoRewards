@@ -40,7 +40,7 @@
                 </div>
                 
 
-                <button class="addusers" id="addadmins">
+                <button class="adduser" id="addadmins">
                     <i class="fa-solid fa-plus"></i>
                      Create Admin
                 </button>
