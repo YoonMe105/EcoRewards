@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            margin: 0px;
+            background-color: #b4dac9;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #ffffff;
+            margin: 30px;
+            box-shadow: 0 0 20px #a4a4a4;
+        }
+
+        #button1, #button2 {
+            margin: 10px 19px 5px 19px;
+            width: 90%;
+            padding: 12px;
+            background: #54a582;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        #confirm-btn {
+            margin: 19px;
+            margin-top: 202px;
+            width: 90%;
+            padding: 12px;
+            background: #54a582;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        #button3, #button5{
+            width: 35%;
+            margin-top: 20px;
+            margin-left: 35px;
+            margin-right: 5px;
+            margin-bottom: 15px;
+            display: block;
+            padding: 5px;
+            background: #f5f5f5;
+            color: rgb(33, 33, 33);
+            font-size: 16px;
+            float: left;
+            border-radius: 8px;
+        }
+
+        #button4 {
+            width: 35%;
+            margin-top: 20px;
+            margin-right: 35px;
+            margin-left: 5px;
+            margin-bottom: 15px;
+            display: block;
+            padding: 5px;
+            background: #f5f5f5;
+            color: rgb(33, 33, 33);
+            font-size: 16px;
+            float: right;
+            border-radius: 8px;
+        }
+
+        .avatar-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-left: 40px;
+            margin-right: 40px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+
+        }
+
+        .avatar-grid img {
+            width: 90px;
+            height: 90px;
+            cursor: pointer;
+        }
+
+        h3 {
+            text-align: left;
+            margin-bottom: 3px;
+            margin-top: 20px;
+            margin-left: 15px;
+        }
+
+        #newUsername {
+            width: 90%;
+            padding: 12px;
+            margin: 10px;
+            margin-top: 0px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            display: block;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <a href="profile.html" class="back-btn" aria-label="Back"></a>
+        <span class="logo">EcoRewards</span>
+    </header>
+
+    <!-- PROFILE IMAGE -->
+    <div class="profile-container">
+        <img id="profileImg" class="profile-img">
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <button id="button1" onclick="openAvatarPopup()">Change Profile Picture</button>
+    <button id="button2" onclick="openNamePopup()">Change User Name</button>
+
+    <button id="confirm-btn">CONFIRM</button>
+
+    <!-- ===== AVATAR POPUP ===== -->
+    <div id="avatarPopup" class="popup hidden">
+        <div class="popup-box">
+
+            <div class="avatar-grid">
+                <img src="image/student_boy.png" onclick="selectAvatar('student_boy.png')">
+                <img src="image/student_girl.png" onclick="selectAvatar('student_girl.png')">
+                <img src="image/staff_boy.png" onclick="selectAvatar('staff_boy.png')">
+                <img src="image/staff_girl.png" onclick="selectAvatar('staff_girl.png')">
+            </div>
+
+            <button id="button3" onclick="saveAvatar()">Confirm</button>
+            <button id="button4" onclick="closePopup()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- ===== NAME POPUP ===== -->
+    <div id="namePopup" class="popup hidden">
+        <div class="popup-box">
+            <h3>New User Name</h3>
+            <input type="text" id="newUsername" placeholder="Enter new user name">
+            <button id="button5" onclick="saveUsername()">Confirm</button>
+            <button id="button4" onclick="closePopup()">Cancel</button>
+        </div>
+    </div>
+
+
+<script>
+    /* ---------- Change pic and name PAGE ---------- */
+let selectedAvatar = "";
+const profileImg = document.getElementById("profileImg");
+
+/* LOAD PROFILE */
+if (profileImg) {
+  fetch("http://127.0.0.1:5000/get_profile", {
+    method: "GET",
+    credentials: "include"
+  })
+  .then(res => {
+    if (!res.ok) throw new Error("Not logged in");
+    return res.json();
+  })
+  .then(data => {
+    profileImg.src = data.profile_image
+    ? "image/" + data.profile_image
+    : "image/student_boy.png"; // default
+  })
+  .catch(err => console.log(err.message));
+}
+
+/* POPUP CONTROL */
+function openAvatarPopup() {
+  document.getElementById("avatarPopup").classList.remove("hidden");
+}
+
+function openNamePopup() {
+  document.getElementById("namePopup").classList.remove("hidden");
+}
+
+function closePopup() {
+  document.getElementById("avatarPopup").classList.add("hidden");
+  document.getElementById("namePopup").classList.add("hidden");
+}
+
+/* AVATAR */
+function selectAvatar(filename) {
+  selectedAvatar = filename;
+}
+
+function saveAvatar() {
+  if (!selectedAvatar) return alert("Select an avatar");
+
+  profileImg.src = "image/" + selectedAvatar;
+  closePopup();
+
+  fetch("http://127.0.0.1:5000/update_profile_image", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({ profile_image: selectedAvatar })
+  });
+}
+
+/* USERNAME */
+function saveUsername() {
+  const username = document.getElementById("newUsername").value;
+  if (!username) return alert("Username cannot be empty");
+
+  closePopup();
+
+  fetch("http://127.0.0.1:5000/update_username", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({ username })
+  });
+}
+</script>
+</body>
+</html>
+

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+/* PROFILE LAYOUT */
+.profile-header {
+  position: relative;
+  text-align: center;
+  padding: 10px;
+  background: #b4dac9;
+}
+
+.profile-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: white;
+  object-fit: cover;
+  margin-top: 10px;
+}
+
+.menu-btn {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 28px;
+  cursor: pointer;
+  color: white;
+}
+
+/* MENU */
+.menu {
+  position: absolute;
+  right: 15px;
+  top: 50px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  width: 200px;
+  z-index: 999;
+}
+
+.menu-item {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item:hover {
+  background: #f0f0f0;
+}
+
+/* INFO */
+.info {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.points {
+  font-size: 45px;
+  margin: 30px;
+  margin-bottom: 55px;
+}
+
+.achievement-box{
+  margin: 15px;
+  padding: 22px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+}
+
+/* BUTTON */
+.btn {
+  background: #54a582;
+  color: white;
+  padding: 7px 15px;
+  border-radius: 6px;
+  border: none;
+}
+
+/* MY REWARDS */
+.reward-btn {
+  margin: 15px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+<!-- HEADER -->
+<header class="header">
+  <a href="homepage.php" class="back-btn"></a>
+  <span class="logo">EcoRewards</span>
+  <span class="menu-btn" onclick="toggleMenu()">☰</span>
+  <!-- MENU -->
+  <div id="menu" class="menu hidden">
+    <div class="menu-item" onclick="location.href='activity_history.html'">
+      Activity History
+    </div>
+    <div class="menu-item" onclick="location.href='change_pic&name.html'">
+      Edit Profile
+    </div>
+  </div>
+</header>
+
+<!-- PROFILE -->
+<div class="profile-header">
+  <img id="profileImg" class="profile-img" src="">
+  <h3 id="username">User Name</h3>
+</div>
+
+<!-- INFO -->
+<div class="info">
+  <p id="collectedText">You have Collected</p>
+  <div class="points" id="points">0 points</div>
+  <h3 id="achievement">Achievement</h3>
+</div>
+
+<!-- ACHIEVEMENT -->
+<div class="achievement-box">
+  <div>
+    <span id="uncollected">0 points haven’t collect !!!</span>
+  </div>
+  <button class="btn">Collect All</button>
+</div>
+
+<!-- MY REWARDS -->
+<div class="reward-btn" onclick="location.href='my_rewards.html'">
+  <span>My Rewards</span>
+  <span>›</span>
+</div>
+
+<script>
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("hidden");
+}
+
+/* LOAD PROFILE FROM PHP + MYSQL */
+fetch("get_profile.php", {
+  credentials: "include"
+})
+.then(res => {
+  if (!res.ok) throw new Error("Not logged in");
+  return res.json();
+})
+.then(data => {
+  document.getElementById("username").textContent = data.username;
+  document.getElementById("profileImg").src =
+    "image/" + data.profile_image;
+  document.getElementById("points").textContent =
+    data.total_points + " points";
+  document.getElementById("uncollected").textContent =
+    data.uncollected_points + " points haven’t collect !!!";
+})
+.catch(() => {
+  window.location.href = "login.html";
+});
+</script>
+
+</body>
+</html>
