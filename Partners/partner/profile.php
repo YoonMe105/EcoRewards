@@ -1,14 +1,13 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['partners'])) {
+if (!isset($_SESSION['partner_id'])) {
     header("Location: ../login/login.php");
     exit();
 }
 include "../config/dbcon.php";
-$partner = $_SESSION['partners'];
-$partnerId = $partner['id'];
 
+$partnerId = $_SESSION['partner_id'];
 $query = "SELECT * FROM partners WHERE id = $partnerId";
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($result);
@@ -154,4 +153,5 @@ if (isset($_POST['btnConfirmPassword'])) {
     
 </script>
 </body>
+
 </html>
