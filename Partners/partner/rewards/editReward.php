@@ -4,16 +4,13 @@ if (!isset($_SESSION['partner_id'])) {
     header("Location: ../login/login.php");
     exit();
 }
-include "../../config/dbcon.php";
+include "db.php";
 $partnerId = $_SESSION['partner_id'];
-
-if (!isset($_GET['id'])) { header("Location: rewards.php"); exit(); }
-$rewardId = mysqli_real_escape_string($conn, $_GET['id']);
-
-// Fetch Logic
-$query = "SELECT * FROM rewards WHERE id = '$rewardId' AND partners_id = '{$partner['id']}'";
+$query = "SELECT * FROM partners WHERE id = '$partnerId'";
 $result = mysqli_query($conn, $query);
-$row = mysqli_fetch_assoc($result);
+$partner = mysqli_fetch_assoc($result);
+
+
 
 if (!$row) { echo "Reward not found."; exit(); }
 
@@ -48,7 +45,7 @@ if (isset($_POST['btnUpdate'])) {
     <aside class="sidebar">
         <div class="sidebar-top"><div class="logo">EcoRewards</div></div>
         <nav class="nav">
-            <a href="../dashboard.php" class="nav-item">Dashboard</a>
+            <a href="../partner_homepage.php" class="nav-item">Dashboard</a>
             <a href="rewards.php" class="nav-item active">Rewards</a>
         </nav>
     </aside>
@@ -97,4 +94,5 @@ if (isset($_POST['btnUpdate'])) {
 </body>
 
 </html>
+
 
