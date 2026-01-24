@@ -1,13 +1,15 @@
 <?php
 session_start();
-if (!isset($_SESSION['partners'])) {
+if (!isset($_SESSION['partner_id'])) { 
     header("Location: ../login/login.php");
     exit();
 }
 
 include "../../config/dbcon.php";
-$partner = $_SESSION['partners'];
-$partnerId = $partner['id'];
+$partnerId = $_SESSION['partner_id'];
+$query = "SELECT * FROM partners WHERE id = '$partnerId'";
+$result = mysqli_query($conn, $query);
+$partner = mysqli_fetch_assoc($result);
 
 $updateSql = "UPDATE rewards 
               SET status = 'expired' 
@@ -199,4 +201,5 @@ $availableCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS tot
 </div>
 
 </body>
+
 </html>
