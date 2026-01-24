@@ -4,7 +4,7 @@ if (!isset($_SESSION['partner_id'])) {    header("Location: ../login/login.php")
     exit();
 }
 
-include "../../config/dbcon.php";
+include "db.php";
 $partnerId = $_SESSION['partner_id'];
 $query = "SELECT * FROM partners WHERE id = '$partnerId'";
 $result = mysqli_query($conn, $query);
@@ -42,7 +42,7 @@ if (isset($_POST['btnUpdate'])) {
     $imageUpdateSQL = "";
     if (!empty($_FILES['image']['name'])) {
         $imageName = $_FILES['image']['name'];
-        $target = "img/" . basename($imageName); // Standardize on 'img/' folder
+        $target = "image/" . basename($imageName);
         move_uploaded_file($_FILES['image']['tmp_name'], "../../" . $target);
         $imageUpdateSQL = ", image = '$target'";
     }
@@ -83,7 +83,7 @@ if (isset($_POST['btnUpdate'])) {
             <div class="avatar-circle" style="width: 80px; height: 80px; margin: 0 auto 10px; background: #f3f4f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                 <?php 
                 $partnerName = $_SESSION['partners']['name'];
-                $imagePath = "../../img/" . $partnerName . ".png";
+                $imagePath = "../../image/" . $partnerName . ".png";
                 if (file_exists($imagePath)) {
                     echo '<img src="' . htmlspecialchars($imagePath) . '" alt="Profile" style="width:100%; height:100%; object-fit:cover;">';
                 } else {
@@ -98,7 +98,7 @@ if (isset($_POST['btnUpdate'])) {
         </div>
 
         <nav class="nav">
-            <a href="../dashboard.php" class="nav-item">Dashboard</a>
+            <a href="../partner_homepage.php" class="nav-item">Dashboard</a>
             <a href="../marketing.php" class="nav-item">Marketing Analysis</a>
             <a href="events.php" class="nav-item active">Events</a>
             <a href="../rewards/rewards.php" class="nav-item">Rewards</a>
@@ -176,4 +176,5 @@ if (isset($_POST['btnUpdate'])) {
 
 </body>
 </html>
+
 
