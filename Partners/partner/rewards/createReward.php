@@ -6,8 +6,10 @@ if (!isset($_SESSION['partner_id'])) {
 }
 
 include "../../config/dbcon.php";
-$partner = $_SESSION['partners'];
-$partnerId = $partner['id'];
+$partnerId = $_SESSION['partner_id'];
+$query = "SELECT * FROM partners WHERE id = '$partnerId'";
+$result = mysqli_query($conn, $query);
+$partner = mysqli_fetch_assoc($result);
 
 if (isset($_POST['btnCreate'])) {
     $name        = mysqli_real_escape_string($conn, $_POST['name']);          // Match HTML name="name"
@@ -134,3 +136,4 @@ if (isset($_POST['btnCreate'])) {
 </body>
 
 </html>
+
