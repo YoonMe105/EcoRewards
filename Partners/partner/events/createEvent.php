@@ -4,7 +4,7 @@ if (!isset($_SESSION['partner_id'])) {
     header("Location: ../login/login.php");
     exit;
 }
-include "../../config/dbcon.php";
+include "db.php";
 $partnerId = $_SESSION['partner_id'];
 $query = "SELECT * FROM partners WHERE id = '$partnerId'";
 $result = mysqli_query($conn, $query);
@@ -24,11 +24,10 @@ if (isset($_POST['btnCreate'])) {
     $image_name = $_FILES['image']['name'];
     $tmp_name   = $_FILES['image']['tmp_name'];
 
-    // FIX 1: Correct Physical Path (Go up 2 folders to find 'img')
-    $upload_folder = "../../img/" . $image_name; 
+    $upload_folder = "../../image/" . $image_name; 
     
-    // Path to save in Database (Just 'img/filename.png')
-    $db_image_path = "img/" . $image_name;
+   
+    $db_image_path = "image/" . $image_name;
     move_uploaded_file($tmp_name, $upload_folder);
 
     $sql = "INSERT INTO events 
@@ -68,7 +67,7 @@ if (isset($_POST['btnCreate'])) {
         <div class="profile" style="padding: 20px; text-align: center; border-bottom: 1px solid #f3f4f6;">
             <div class="avatar-circle" style="width: 80px; height: 80px; margin: 0 auto 10px; background: #f3f4f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                <?php 
-                $imagePath = "../../img/" . $partner['name'] . ".png";
+                $imagePath = "../../image/" . $partner['name'] . ".png";
                 if (file_exists($imagePath)) {
                     echo '<img src="' . htmlspecialchars($imagePath) . '" alt="Profile" style="width:100%; height:100%; object-fit:cover;">';
                 } else {
@@ -85,7 +84,7 @@ if (isset($_POST['btnCreate'])) {
         </div>
 
         <nav class="nav">
-            <a href="../dashboard.php" class="nav-item">Dashboard</a>
+            <a href="../partner_homepage.php" class="nav-item">Dashboard</a>
             <a href="../marketing.php" class="nav-item">Marketing Analysis</a>
             <a href="events.php" class="nav-item active">Events</a>
             <a href="../rewards/rewards.php" class="nav-item">Rewards</a>
@@ -153,3 +152,4 @@ if (isset($_POST['btnCreate'])) {
 </body>
 
 </html>
+
