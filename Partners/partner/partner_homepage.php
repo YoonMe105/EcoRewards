@@ -56,7 +56,7 @@ $rewardCount = mysqli_fetch_assoc(
         </div>
 
         <nav class="nav">
-            <a href="dashboard.php" class="nav-item active">Dashboard</a>
+            <a href="partner_homepage.php" class="nav-item active">Dashboard</a>
             <a href="marketing.php" class="nav-item">Marketing Analysis</a>
             <a href="events/events.php" class="nav-item">Events</a>
             <a href="rewards/rewards.php" class="nav-item">Rewards</a>
@@ -119,4 +119,5 @@ $rewardCount = mysqli_fetch_assoc(
 
         
     
+
 
