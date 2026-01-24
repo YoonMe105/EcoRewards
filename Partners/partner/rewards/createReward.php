@@ -5,7 +5,7 @@ if (!isset($_SESSION['partner_id'])) {
     exit;
 }
 
-include "../../config/dbcon.php";
+include "db.php";
 $partnerId = $_SESSION['partner_id'];
 $query = "SELECT * FROM partners WHERE id = '$partnerId'";
 $result = mysqli_query($conn, $query);
@@ -68,7 +68,7 @@ if (isset($_POST['btnCreate'])) {
         </div>
 
         <nav class="nav">
-            <a href="../dashboard.php" class="nav-item">Dashboard</a>
+            <a href="../partner_homepage.php" class="nav-item">Dashboard</a>
             <a href="../marketing.php" class="nav-item">Marketing Analysis</a>
             <a href="../events/events.php" class="nav-item">Events</a>
             <a href="rewards.php" class="nav-item active">Rewards</a>
@@ -136,4 +136,5 @@ if (isset($_POST['btnCreate'])) {
 </body>
 
 </html>
+
 
