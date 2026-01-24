@@ -1,3 +1,14 @@
+<?php
+    session_start();
+
+    include 'conn.php';
+
+    if (!isset($_SESSION['admin_id'])) {
+        header("Location: ../User/login.php");
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +38,6 @@
                     <div class="name">
                         <h3>User</h3>
                         <?php
-                            include('conn.php');
 
                             $sql = "SELECT COUNT(*) FROM users";
                             $result = mysqli_query($dbConn, $sql);

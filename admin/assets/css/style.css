@@ -405,7 +405,7 @@ select:focus {
 
 .addbtn {
     background-color: #4caf50;
-    color: white;
+    color: #000;
     border: none;
 }
 
@@ -551,7 +551,7 @@ select:focus {
 .partner-card .company_image {
     display: block;             
     max-width: 100%;  
-    height: 150px;           
+    min-height: 150px;           
     height: auto;                
     border-radius: 12px;        
     object-fit: cover;           
@@ -935,5 +935,20 @@ select:focus {
 
 #viewUserModal {
     display: flex !important;
+}
+
+.userprofile{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border-radius: 50%;
+    object-fit: cover;           
+    border: 2px solid #ddd;
+}
+
+.close-btn{
+    font-size: 22px;
+    cursor: pointer;
+    color: #333;
 }
 /* end users.php */

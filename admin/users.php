@@ -26,6 +26,22 @@
     <title>Users</title>
 
     <link href="./assets/css/style.css" rel="stylesheet" type="text/css" />
+    <style>
+        .userprofile{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border-radius: 50%;
+    object-fit: cover;           
+    border: 2px solid #ddd;
+}
+.close-btn{
+    border:none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #333;
+}
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
 </head>
 <body>
@@ -184,7 +200,7 @@
                 <div class="modal-body">
                     <div class="user-header">
                         <div class="avatar">
-                            <img src="<?= $viewUser['profile_image'] ?>" alt="User" class="adminprofile" />
+                            <img src="../User/image/<?= $viewUser['profile_image'] ?>" alt="User" class="userprofile" />
                         </div>
                         <div>
                             <h2><?= $viewUser['fullname']; ?></h2>
