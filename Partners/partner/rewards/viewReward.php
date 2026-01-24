@@ -1,11 +1,11 @@
 <?php
 session_start();
-if (!isset($_SESSION['partners'])) {
+if (!isset($_SESSION['partner_id'])) {
     header("Location: ../login/login.php");
     exit();
 }
 include "../../config/dbcon.php";
-$partner = $_SESSION['partners'];
+$partnerId = $_SESSION['partner_id'];
 
 if (!isset($_GET['id'])) { header("Location: rewards.php"); exit(); }
 $rewardId = mysqli_real_escape_string($conn, $_GET['id']);
@@ -56,4 +56,5 @@ if (!$row) { echo "Reward not found."; exit(); }
     </main>
 </div>
 </body>
+
 </html>
