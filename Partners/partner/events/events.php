@@ -1,14 +1,15 @@
 <?php
 session_start();
-if (!isset($_SESSION['partners'])) {
+if (!isset($_SESSION['partner_id'])) {
     header("Location: ../login/login.php");
     exit();
 }
 
 include "../../config/dbcon.php";
-$partner = $_SESSION['partners'];
-$partnerId = $partner['id'];
-
+$partnerId = $_SESSION['partner_id'];
+$query = "SELECT * FROM partners WHERE id = '$partnerId'";
+$result = mysqli_query($conn, $query);
+$partner = mysqli_fetch_assoc($result);
 
 $totalEvents = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as count FROM events WHERE partners_id = $partnerId"))['count'] ?? 0;
 $ongoingCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as count FROM events WHERE partners_id = $partnerId AND end_date > NOW() AND start_date <= NOW()"))['count'] ?? 0;
@@ -190,4 +191,5 @@ if($partQuery) {
     </main>
 </div>
 </body>
+
 </html>
