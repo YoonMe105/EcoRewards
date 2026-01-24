@@ -10,7 +10,8 @@ include "../config/dbcon.php";
 $partnerId = $_SESSION['partner_id'];
 $query = "SELECT * FROM partners WHERE id = $partnerId";
 $result = mysqli_query($conn, $query);
-$row = mysqli_fetch_assoc($result);
+$partner = mysqli_fetch_assoc($result);
+$row = $partner;
 
 if (isset($_POST['btnUpdateProfile'])) {
     $name    = $_POST['txtName'];
@@ -87,7 +88,7 @@ if (isset($_POST['btnConfirmPassword'])) {
         </div>
 
         <nav class="nav">
-            <a href="dashboard.php" class="nav-item">Dashboard</a>
+            <a href="partner_homepage.php" class="nav-item">Dashboard</a>
             <a href="marketing.php" class="nav-item">Marketing Analysis</a>
             <a href="events/events.php" class="nav-item">Events</a>
             <a href="rewards/rewards.php" class="nav-item">Rewards</a>
@@ -155,3 +156,4 @@ if (isset($_POST['btnConfirmPassword'])) {
 </body>
 
 </html>
+
