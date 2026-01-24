@@ -6,17 +6,14 @@ if (!isset($_SESSION['partner_id'])) {
 }
 include "../../config/dbcon.php";
 $partnerId = $_SESSION['partner_id'];
-$query = "SELECT * FROM partners WHERE id = '$partnerId'";
-$result = mysqli_query($conn, $query);
-$partner = mysqli_fetch_assoc($result);;
 
 if (!isset($_GET['id'])) { header("Location: rewards.php"); exit(); }
 $rewardId = mysqli_real_escape_string($conn, $_GET['id']);
 
 // Fetch Logic
-// $query = "SELECT * FROM rewards WHERE id = '$rewardId' AND partners_id = '{$partner['id']}'";
-// $result = mysqli_query($conn, $query);
-// $row = mysqli_fetch_assoc($result);
+$query = "SELECT * FROM rewards WHERE id = '$rewardId' AND partners_id = '{$partner['id']}'";
+$result = mysqli_query($conn, $query);
+$row = mysqli_fetch_assoc($result);
 
 if (!$row) { echo "Reward not found."; exit(); }
 
@@ -100,3 +97,4 @@ if (isset($_POST['btnUpdate'])) {
 </body>
 
 </html>
+
