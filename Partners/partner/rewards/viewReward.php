@@ -4,7 +4,7 @@ if (!isset($_SESSION['partner_id'])) {
     header("Location: ../login/login.php");
     exit();
 }
-include "../../config/dbcon.php";
+include "db.php";
 $partnerId = $_SESSION['partner_id'];
 
 if (!isset($_GET['id'])) { header("Location: rewards.php"); exit(); }
@@ -30,7 +30,7 @@ if (!$row) { echo "Reward not found."; exit(); }
     <aside class="sidebar">
         <div class="sidebar-top"><div class="logo">EcoRewards</div></div>
         <nav class="nav">
-            <a href="../dashboard.php" class="nav-item">Dashboard</a>
+            <a href="../partner_homepage.php" class="nav-item">Dashboard</a>
             <a href="rewards.php" class="nav-item active">Rewards</a>
         </nav>
     </aside>
@@ -58,3 +58,4 @@ if (!$row) { echo "Reward not found."; exit(); }
 </body>
 
 </html>
+
