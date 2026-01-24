@@ -5,7 +5,7 @@ if (!isset($_SESSION['partner_id'])) {
     exit();
 }
 
-include "../../config/dbcon.php";
+include "db.php";
 $partnerId = $_SESSION['partner_id'];
 $query = "SELECT * FROM partners WHERE id = '$partnerId'";
 $result = mysqli_query($conn, $query);
@@ -72,7 +72,7 @@ if($partQuery) {
         <div class="profile" style="padding: 20px; text-align: center; border-bottom: 1px solid #f3f4f6;">
             <div class="avatar-circle" style="width: 80px; height: 80px; margin: 0 auto 10px; background: #f3f4f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                 <?php 
-                $imagePath = "../../img/" . $partner['name'] . ".png";
+                $imagePath = "../../image/" . $partner['name'] . ".png";
             if (file_exists($imagePath)) {
                 echo '<img src="' . htmlspecialchars($imagePath) . '" alt="Profile" style="width:100%; height:100%; object-fit:cover;">';
         } else {
@@ -89,7 +89,7 @@ if($partQuery) {
         </div>
 
         <nav class="nav">
-            <a href="../dashboard.php" class="nav-item ">Dashboard</a>
+            <a href="../partner_homepage.php" class="nav-item ">Dashboard</a>
             <a href="../marketing.php" class="nav-item">Marketing Analysis</a>
             <a href="events.php" class="nav-item active">Events</a>
             <a href="../rewards/rewards.php" class="nav-item">Rewards</a>
@@ -193,3 +193,4 @@ if($partQuery) {
 </body>
 
 </html>
+
