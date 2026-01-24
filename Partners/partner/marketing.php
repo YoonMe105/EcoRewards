@@ -143,7 +143,7 @@ $resPart = mysqli_query($conn, "SELECT u.fullname, e.name as event_name
         </div>
 
         <nav class="nav">
-            <a href="dashboard.php" class="nav-item">Dashboard</a>
+            <a href="partner_homepage.php" class="nav-item">Dashboard</a>
             <a href="marketing.php" class="nav-item active">Marketing Analysis</a>
             <a href="events/events.php" class="nav-item ">Events</a>
             <a href="rewards/rewards.php" class="nav-item">Rewards</a>
@@ -254,3 +254,4 @@ $resPart = mysqli_query($conn, "SELECT u.fullname, e.name as event_name
 </body>
 
 </html>
+
