@@ -1,13 +1,14 @@
 <?php
 session_start();
-if (!isset($_SESSION['partners'])) {
-    header("Location: ../login/login.php");
+if (!isset($_SESSION['partner_id'])) {    header("Location: ../login/login.php");
     exit();
 }
 
 include "../../config/dbcon.php";
-$partner = $_SESSION['partners'];
-$partnerId = $partner['id'];
+$partnerId = $_SESSION['partner_id'];
+$query = "SELECT * FROM partners WHERE id = '$partnerId'";
+$result = mysqli_query($conn, $query);
+$partner = mysqli_fetch_assoc($result);
 
 // 1. Check if ID is set
 if (!isset($_GET['id'])) {
@@ -175,3 +176,4 @@ if (isset($_POST['btnUpdate'])) {
 
 </body>
 </html>
+
