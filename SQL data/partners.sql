@@ -44,8 +44,9 @@ CREATE TABLE `partners` (
 --
 
 INSERT INTO `partners` (`id`, `name`, `company_image`, `email`, `password`, `contact_person`, `phone`, `address`, `created_at`) VALUES
-(1, 'Subway', 'img/subway.png', 'subway@example.com', '$2y$10$sORxNFmiTgtueB4AIinsxOOUeP/pxovVGguR0Z8gLVbWWQw4smHUe', 'John Doe', '0123456789', 'APU', 'current_timestamp()'),
-(2, 'Aicha', 'img/aicha.png', 'adminmy@aichafood.com', '$2y$10$l6d/voUMsATJqs63A6Axneelt9ycxsfO2VOUR8W1CW2Vwxkaon4xq', 'Sara Lee', '0987654321', 'APU', '2025-12-21');
+(1, 'Subway', 'subway.png', 'subway@example.com', '$2y$10$KqtwZikEgc3RUv8La7XCROxvoCcdx3QRRPgeg0r56sAjziVQNP9KS', 'John Doe', '0123456789', 'APU', 'current_timestamp()'),
+(2, 'Aicha', 'aicha.png', 'adminmy@aichafood.com', '$2y$10$.5nHyRhmSJHAgpoOspFvd.0SZ3hNtNz8pQEIwdPpEkoitM9bDtB6q', 'Sara Lee', '0987654321', 'APU', '2025-12-21'),
+(3, 'BilaBila', 'bilabila.png', 'bilabila@gmail.com', '$2y$10$jTepxF7nd94pU7E5ReBfxe77vq4KWUY9lMOQWCm8dd6OjLykP7Nwy', 'Emily Tan', '01125665430', 'APU', 'current_timestamp()');
 
 --
 -- Indexes for dumped tables
