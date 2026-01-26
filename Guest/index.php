@@ -65,7 +65,7 @@ if (!$next2) {
 
     <!-- Auth buttons -->
     <div class="auth-buttons">
-      <button class="btn-login" onclick="window.location.href='login.php'">Log In</button>
+      <button class="btn-login" onclick="window.location.href='./User/php/login.php'">Log In</button>
       <button class="btn-register">Register</button>
     </div>
 
@@ -346,51 +346,52 @@ if (!$next2) {
 </body>
 </html>
 
-<!--Partners-->
+<!-- Partners -->
 <section id="partners" class="partners">
   <div class="container">
 
     <h2>Partner Merchants</h2>
 
-    <!-- Slider Wrapper -->
     <div class="partner-slider-wrapper">
 
-      <!-- Left Arrow -->
       <button class="partner-arrow left" onclick="slidePartners(-1)">❮</button>
 
-      <!-- Partner Cards -->
       <div class="partner-grid" id="partnerSlider">
 
-        <!-- Partner 1 -->
-        <div class="partner-card">
-          <img src="images/bila.JPG" alt="Bila-Bila Store" class="partner-img">
-          <h3>Bila-Bila Mart</h3>
-          <p>Local cafe offering a wide range of meals and beverages for everyday dining</p>
-          <p>📍 Level 3, Block J1, Asia Pacific University, Technology Park Malaysia, Bukit Jalil, 57000 Kuala Lumpur</p>
-          <p>📞 03-2702 3018</p>
-        </div>
+        <?php
+        $query = "SELECT name, email, phone, address FROM partners";
+        $result = mysqli_query($conn, $query);
 
-        <!-- Partner 2 -->
-        <div class="partner-card">
-          <img src="images/subway.JPG" alt="Subway" class="partner-img">
-          <h3>Subway</h3>
-          <p>International sandwich brand offering fresh and customizable meal options</p>
-          <p>📍 APU Centrepoint @ Level 5, Jalan Teknologi 5, Taman Teknologi Malaysia, 57000 Kuala Lumpur</p>
-          <p>📞 03-5888 7600</p>
-        </div>
+        while ($row = mysqli_fetch_assoc($result)) {
 
-        <!-- Partner 3 -->
-        <div class="partner-card">
-          <img src="images/aicha.JPG" alt="Ai-Cha" class="partner-img">
-          <h3>Ai-Cha</h3>
-          <p>Popular beverage brand serving a variety of refreshing milk teas and drinks</p>
-          <p>📍 Asia Pacific University (APU) Level 5 Centrepoint, Jalan Teknologi 5, Technology Park, Bukit Jalil, 57000 Kuala Lumpur</p>
-          <p>📞 +60 11-3653 3265</p>
-        </div>
+          if ($row['name'] == 'Subway') {
+              $image = "images/subway.JPG";
+              $description = "International sandwich brand offering fresh and customizable meal options.";
+          } elseif ($row['name'] == 'Aicha') {
+              $image = "images/aicha.JPG";
+              $description = "Popular beverage brand serving a variety of refreshing milk teas and drinks.";
+          } elseif ($row['name'] == 'BilaBila') {
+              $image = "images/bila.JPG";
+              $description = "Local cafe offering a wide range of meals and beverages for everyday dining.";
+          }
+        ?>
+          <div class="partner-card">
+
+            <img src="<?php echo $image; ?>" class="partner-img">
+
+            <h3><?php echo $row['name']; ?></h3>
+
+            <p><?php echo $description; ?></p>
+
+            <p>📧 <?php echo $row['email']; ?></p>
+            <p>📞 <?php echo $row['phone']; ?></p>
+            <p>📍 <?php echo $row['address']; ?></p>
+
+          </div>
+        <?php } ?>
 
       </div>
 
-      <!-- Right Arrow -->
       <button class="partner-arrow right" onclick="slidePartners(1)">❯</button>
 
     </div>
