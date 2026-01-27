@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "db.php";
 
 $error = "";
@@ -54,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($partner && password_verify($password, $partner['password'])) {
         $_SESSION['partner_id'] = $partner['id'];
-        header("Location: partner_homepage.php");
+        header("Location: ../partner/partner_homepage.php");
         exit;
     }
     $error = "Invalid email or password";

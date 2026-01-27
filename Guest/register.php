@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['role'] = $role;
 
         // Redirect to user main page
-        header("Location: homepage.php");
+        header("Location: ../User/php/login.php");
         exit();
     } else {
         echo "Registration failed: " . $stmt->error;

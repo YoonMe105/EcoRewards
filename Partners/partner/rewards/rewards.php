@@ -110,7 +110,7 @@ $availableCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS tot
             
             <div style="display: flex; gap: 10px;">
                 <a href="createReward.php" class="btn" style="background-color: #1b7f4b; text-decoration: none; color: white;">+ Create Reward</a>
-                <a href="../../auth/logout.php" class="btn" style="background-color: #ef4444; text-decoration: none; color: white;">Logout</a>
+                <a href="../../login/logout.php" class="btn" style="background-color: #ef4444; text-decoration: none; color: white;">Logout</a>
             </div>
         </header>
             

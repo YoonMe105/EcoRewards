@@ -65,7 +65,7 @@ if (!$next2) {
 
     <!-- Auth buttons -->
     <div class="auth-buttons">
-      <button class="btn-login" onclick="window.location.href='./User/php/login.php'">Log In</button>
+      <button class="btn-login" onclick="window.location.href='../User/php/login.php'">Log In</button>
       <button class="btn-register">Register</button>
     </div>
 

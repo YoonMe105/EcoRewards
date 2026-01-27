@@ -73,7 +73,7 @@ if (isset($_POST['btnConfirmPassword'])) {
         <div class="profile" style="padding: 20px; text-align: center; border-bottom: 1px solid #f3f4f6;">
             <div class="avatar-circle" style="width: 80px; height: 80px; margin: 0 auto 10px; background: #f3f4f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                 <?php 
-                $imagePath = "../image/" . $partner['name'] . ".png";
+                $imagePath = "image/" . $partner['name'] . ".png";
                 if (file_exists($imagePath)) {
                     echo '<img src="' . htmlspecialchars($imagePath) . '" alt="Profile" style="width:100%; height:100%; object-fit:cover;">';
                 } else {
