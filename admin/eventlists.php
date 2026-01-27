@@ -61,7 +61,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'view' && isset($_GET['id'])) 
 
                 include "conn.php";
 
-                $sql = "Select events.*,partners.name As pname From events Left Join partners On events.partners_id = partners.id where status ='active'";
+                $sql = "Select events.*,partners.name As pname From events Left Join partners On events.partners_id = partners.id where status !='pending'";
                 $result = mysqli_query($dbConn,$sql);
 
                 if(mysqli_num_rows($result) <= 0){

@@ -24,7 +24,7 @@
                 </div>
                 
 
-                <button class="addrules" id="addrules">
+                <button class="adduser" id="addrules">
                     <i class="fa-solid fa-plus"></i>
                      Add Point Rule
                 </button>

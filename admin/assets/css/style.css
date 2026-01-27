@@ -31,6 +31,10 @@
     cursor: pointer;
 }
 
+.logoimg{
+    width: 50px;
+}
+
 .logo {
     font-weight: bold;
     font-size: 20px;
@@ -401,7 +405,7 @@ select:focus {
 
 .addbtn {
     background-color: #4caf50;
-    color: white;
+    color: #000;
     border: none;
 }
 
@@ -547,7 +551,7 @@ select:focus {
 .partner-card .company_image {
     display: block;             
     max-width: 100%;  
-    height: 150px;           
+    min-height: 150px;           
     height: auto;                
     border-radius: 12px;        
     object-fit: cover;           
@@ -621,6 +625,13 @@ select:focus {
 
 
 /* Start profile.php */
+
+.profile-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
 .profile-card {
     width: 300px;
     border: 1px solid #ccc;
@@ -652,6 +663,50 @@ select:focus {
     color: #000;
     margin-top: 10px;
 }
+
+.profile {
+    flex: 1;
+    background: #fff;
+}
+
+.profile-update {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Form styling */
+.profile-form h3 {
+    margin-bottom: 20px;
+}
+
+.profile-form label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.profile-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* Update button */
+.profile-form button {
+    padding: 10px 20px;
+    border: 1px solid #333;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+
 /* End profile.php */
 
 
@@ -823,3 +878,77 @@ select:focus {
     color: #c0392b;
 }
 /* End eventapproval.php */
+
+/* Start users.php */
+.modal-body .user-header{
+    display: flex;
+    gap: 30px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin: 25px 0;
+
+}
+
+.stat-box {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: left;
+}
+
+.stat-box small {
+    display: block;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.stat-box strong {
+    font-size: 20px;
+}
+
+.contact{
+    margin: 20px 0;
+}
+
+.contact h4, .contact p{
+    padding: 10px 0;
+}
+
+.btnaddpoint{
+    color: #000;
+    text-decoration: none;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.btnaddpoint:hover{
+    background-color: #425bbd;
+    color: #fff;
+}
+
+#viewUserModal {
+    display: flex !important;
+}
+
+.userprofile{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border-radius: 50%;
+    object-fit: cover;           
+    border: 2px solid #ddd;
+}
+
+.close-btn{
+    font-size: 22px;
+    cursor: pointer;
+    color: #333;
+}
+/* end users.php */
