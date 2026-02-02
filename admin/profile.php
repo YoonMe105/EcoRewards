@@ -5,7 +5,7 @@
     include 'conn.php';
 
     if (!isset($_SESSION['admin_id'])) {
-        header("Location: ../User/login.php");
+        header("Location: ../User/php/login.php");
         exit;
     }
 
