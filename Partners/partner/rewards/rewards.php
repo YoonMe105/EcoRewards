@@ -1,15 +1,16 @@
 <?php
 session_start();
 if (!isset($_SESSION['partner_id'])) { 
-    header("Location: ../login/login.php");
+    header("Location: ../../User/login.php");
     exit();
 }
 
-include "/db.php";
+include "../../php/db.php";
 $partnerId = $_SESSION['partner_id'];
 $query = "SELECT * FROM partners WHERE id = '$partnerId'";
 $result = mysqli_query($conn, $query);
 $partner = mysqli_fetch_assoc($result);
+
 
 $updateSql = "UPDATE rewards 
               SET status = 'expired' 
@@ -110,7 +111,7 @@ $availableCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS tot
             
             <div style="display: flex; gap: 10px;">
                 <a href="createReward.php" class="btn" style="background-color: #1b7f4b; text-decoration: none; color: white;">+ Create Reward</a>
-                <a href="../../login/logout.php" class="btn" style="background-color: #ef4444; text-decoration: none; color: white;">Logout</a>
+                <a href="../../../User/php/login.php" class="btn" style="background-color: #ef4444; text-decoration: none; color: white;">Logout</a>
             </div>
         </header>
             
@@ -201,6 +202,4 @@ $availableCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS tot
 </div>
 
 </body>
-
 </html>
-

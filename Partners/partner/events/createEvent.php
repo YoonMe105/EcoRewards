@@ -1,10 +1,10 @@
 <?php
 session_start();
 if (!isset($_SESSION['partner_id'])) {
-    header("Location: ../login/login.php");
+    header("Location: ./../User/login.php");
     exit;
 }
-include "db.php";
+include "../../php/db.php";
 $partnerId = $_SESSION['partner_id'];
 $query = "SELECT * FROM partners WHERE id = '$partnerId'";
 $result = mysqli_query($conn, $query);
@@ -24,9 +24,8 @@ if (isset($_POST['btnCreate'])) {
     $image_name = $_FILES['image']['name'];
     $tmp_name   = $_FILES['image']['tmp_name'];
 
-    $upload_folder = "../../image/" . $image_name; 
+    $upload_folder = "image/" . $image_name; 
     
-   
     $db_image_path = "image/" . $image_name;
     move_uploaded_file($tmp_name, $upload_folder);
 
@@ -84,7 +83,7 @@ if (isset($_POST['btnCreate'])) {
         </div>
 
         <nav class="nav">
-            <a href="../partner_homepage.php" class="nav-item">Dashboard</a>
+            <a href="../dashboard.php" class="nav-item">Dashboard</a>
             <a href="../marketing.php" class="nav-item">Marketing Analysis</a>
             <a href="events.php" class="nav-item active">Events</a>
             <a href="../rewards/rewards.php" class="nav-item">Rewards</a>
@@ -150,6 +149,4 @@ if (isset($_POST['btnCreate'])) {
 </div>
 
 </body>
-
 </html>
-

@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['partner_id'])) {
-    header("Location: ../login/login.php");
+    header("Location: ../../User/login.php");
     exit;
 }
 
-include "db.php";
+include "../../php/db.php";
 $partnerId = $_SESSION['partner_id'];
 $query = "SELECT * FROM partners WHERE id = '$partnerId'";
 $result = mysqli_query($conn, $query);
@@ -68,7 +68,7 @@ if (isset($_POST['btnCreate'])) {
         </div>
 
         <nav class="nav">
-            <a href="../partner_homepage.php" class="nav-item">Dashboard</a>
+            <a href="../dashboard.php" class="nav-item">Dashboard</a>
             <a href="../marketing.php" class="nav-item">Marketing Analysis</a>
             <a href="../events/events.php" class="nav-item">Events</a>
             <a href="rewards.php" class="nav-item active">Rewards</a>
@@ -134,7 +134,4 @@ if (isset($_POST['btnCreate'])) {
     </main>
 </div>
 </body>
-
 </html>
-
-

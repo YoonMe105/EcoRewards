@@ -2,16 +2,17 @@
 session_start();
 
 if (!isset($_SESSION['partner_id'])) {
-    header("Location: ../login/login.php");
+    header("Location: ./../User/login.php");
     exit();
 }
-include "db.php";
+include "../php/db.php";
 
 $partnerId = $_SESSION['partner_id'];
 $query = "SELECT * FROM partners WHERE id = $partnerId";
 $result = mysqli_query($conn, $query);
 $partner = mysqli_fetch_assoc($result);
 $row = $partner;
+
 
 if (isset($_POST['btnUpdateProfile'])) {
     $name    = $_POST['txtName'];
@@ -36,23 +37,46 @@ if (isset($_POST['btnUpdateProfile'])) {
    STEP 3: CHANGE PASSWORD LOGIC (If Password form is submitted)
 --------------------------------------------------------- */
 if (isset($_POST['btnConfirmPassword'])) {
-    $recentPass  = $_POST['txtRecentPass'];
-    $newPass     = $_POST['txtNewPass'];
-    $confirmPass = $_POST['txtConfirmPass'];
+    $recentPass  = trim($_POST['txtRecentPass']);  // trim() removes accidental spaces
+    $newPass     = trim($_POST['txtNewPass']);
+    $confirmPass = trim($_POST['txtConfirmPass']);
+    $partnerId   = $_SESSION['partner_id'];
 
-    // Basic verification logic
+    // 1. Check if New Password and Confirm Password match
     if ($newPass !== $confirmPass) {
-        echo "<script>alert('Passwords do not match!');</script>";
-    } elseif ($recentPass !== $row['password']) {
-        echo "<script>alert('Incorrect recent password!');</script>";
+        echo "<script>alert('Error: New Password and Confirm Password do not match.');</script>";
     } else {
-        $updatePassQuery = "UPDATE partners SET password = '$newPass' WHERE id = $partnerId";
+        // 2. Get the CURRENT hashed password from the database
+        $checkQuery = "SELECT password FROM partners WHERE id = '$partnerId'";
+        $checkResult = mysqli_query($conn, $checkQuery);
         
-        if(mysqli_query($conn, $updatePassQuery)){
-            echo "<script>alert('UPDATE: Password changed successfully'); window.location.href='profile.php';</script>";
+        if ($userData = mysqli_fetch_assoc($checkResult)) {
+            $dbHash = $userData['password'];
+
+            // 3. Verify the Recent Password using the Hash
+            // password_verify(plain_text_input, database_hash)
+            if (password_verify($recentPass, $dbHash)) { 
+                
+                // 4. Hash the NEW password
+                $newHashedPass = password_hash($newPass, PASSWORD_DEFAULT);
+                
+                // 5. Update the database with the NEW hash
+                $updateQuery = "UPDATE partners SET password = '$newHashedPass' WHERE id = '$partnerId'";
+                
+                if (mysqli_query($conn, $updateQuery)) {
+                    echo "<script>alert('Success: Password changed successfully!'); window.location.href='profile.php';</script>";
+                } else {
+                    echo "<script>alert('Database Error: Could not update password.');</script>";
+                }
+
+            } else {
+                // Recent password did not match the hash
+                echo "<script>alert('Error: Recent password is incorrect.');</script>";
+            }
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +97,7 @@ if (isset($_POST['btnConfirmPassword'])) {
         <div class="profile" style="padding: 20px; text-align: center; border-bottom: 1px solid #f3f4f6;">
             <div class="avatar-circle" style="width: 80px; height: 80px; margin: 0 auto 10px; background: #f3f4f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                 <?php 
-                $imagePath = "image/" . $partner['name'] . ".png";
+                $imagePath = "../image/" . $partner['name'] . ".png";
                 if (file_exists($imagePath)) {
                     echo '<img src="' . htmlspecialchars($imagePath) . '" alt="Profile" style="width:100%; height:100%; object-fit:cover;">';
                 } else {
@@ -154,7 +178,4 @@ if (isset($_POST['btnConfirmPassword'])) {
     
 </script>
 </body>
-
 </html>
-
-

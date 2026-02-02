@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['partner_id'])) {
-    header("Location: ../login/login.php");
+    header("Location: ../../User/login.php");
     exit();
 }
 
-include "db.php";
+include "../../php/db.php";
 $partnerId = $_SESSION['partner_id'];
 $query = "SELECT * FROM partners WHERE id = '$partnerId'";
 $result = mysqli_query($conn, $query);
@@ -72,7 +72,7 @@ if($partQuery) {
         <div class="profile" style="padding: 20px; text-align: center; border-bottom: 1px solid #f3f4f6;">
             <div class="avatar-circle" style="width: 80px; height: 80px; margin: 0 auto 10px; background: #f3f4f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                 <?php 
-                $imagePath = "../image/" . $partner['name'] . ".png";
+                $imagePath = "../../image/" . $partner['name'] . ".png";
             if (file_exists($imagePath)) {
                 echo '<img src="' . htmlspecialchars($imagePath) . '" alt="Profile" style="width:100%; height:100%; object-fit:cover;">';
         } else {
@@ -89,7 +89,7 @@ if($partQuery) {
         </div>
 
         <nav class="nav">
-            <a href="../partner_homepage.php" class="nav-item ">Dashboard</a>
+            <a href="../dashboard.php" class="nav-item ">Dashboard</a>
             <a href="../marketing.php" class="nav-item">Marketing Analysis</a>
             <a href="events.php" class="nav-item active">Events</a>
             <a href="../rewards/rewards.php" class="nav-item">Rewards</a>
@@ -104,7 +104,7 @@ if($partQuery) {
         </div>
         <div style="display: flex; gap: 10px;">
             <a href="createEvent.php" class="btn" style="background-color: #1b7f4b; text-decoration: none; color: white;">+ Create Event</a>
-            <a href="../../login/logout.php" class="btn" style="background-color: #ef4444; text-decoration: none; color: white;">Logout</a>
+            <a href="../../../User/php/login.php" class="btn" style="background-color: #ef4444; text-decoration: none; color: white;">Logout</a>
         </div>
 
         <section class="metrics">
@@ -125,10 +125,10 @@ if($partQuery) {
         <div class="grid-3">
             <?php
             // Logic: End Date is in the past (less than NOW)
-            $query = "SELECT * FROM events WHERE partners_id = $partnerId AND end_date < NOW() ORDER BY end_date DESC"; 
+            $query = "SELECT * FROM events WHERE partners_id = $partnerId AND start_date <= NOW() AND end_date < NOW() ORDER BY end_date DESC"; 
             $result = mysqli_query($conn, $query);
 
-            if(mysqli_num_rows($result) > 0){
+            if(mysqli_num_rows($result) > 0){ 
                 while($row = mysqli_fetch_assoc($result)){
                     echo '<div class="card" style="border-left: 5px solid #9ca3af; opacity: 0.8;">
                             <h3>' . htmlspecialchars($row['name']) . '</h3>
@@ -147,7 +147,7 @@ if($partQuery) {
         <h3 style="margin-bottom: 15px;">Ongoing Events</h3>
         <div class="grid-3">
             <?php
-            $query = "SELECT * FROM events WHERE partners_id = $partnerId AND start_date <= NOW() AND end_date > NOW()"; 
+            $query = "SELECT * FROM events WHERE partners_id = $partnerId AND end_date < NOW() ORDER BY end_date DESC"; 
             $result = mysqli_query($conn, $query);
 
             if(mysqli_num_rows($result) > 0){
@@ -191,6 +191,4 @@ if($partQuery) {
     </main>
 </div>
 </body>
-
 </html>
-

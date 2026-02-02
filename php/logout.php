@@ -22,6 +22,10 @@ if (ini_get("session.use_cookies")) {
 }
 
 /* Redirect to guest page */
+<<<<<<< HEAD:php/logout.php
+header("Location: index.php"); // 🔁 CHANGE if needed
+=======
 header("Location: ../Guest/index.php"); // 🔁 CHANGE if needed
+>>>>>>> a716b40cacc034e7302bb7d962f5903e8ed5d876:User/logout.php
 exit;
 ?>

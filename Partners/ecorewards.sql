@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2026 at 03:53 PM
+-- Generation Time: Jan 26, 2026 at 05:18 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -89,8 +89,9 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `name`, `description`, `image`, `start_date`, `end_date`, `points_reward`, `admins_id`, `partners_id`, `approved_by`, `status`, `created_at`) VALUES
-(1, 'Beach Cleanup', 'Community beach clean up', 'img/beach.png', '2026-01-25 09:00:00', '2026-01-25 12:00:00', 50, 1, 1, 1, 'upcoming', '2025-12-01 10:00:00'),
-(2, 'Tree Planting', 'Plant trees in park', 'img/tree.png', '2026-01-18 08:00:00', '2026-02-15 11:00:00', 100, 2, 2, 2, 'active', '2026-01-17 11:00:00');
+(1, 'Eco Quiz Day', 'Answer 5 eco-friendly questions to earn points', 'img/Eco Quiz Day.png', '2026-01-01 00:00:00', '0000-00-00 00:00:00', 25, 1, 1, 1, 'active', '2026-01-17 21:25:12'),
+(2, 'Campus Recycle Day', 'Recycle items around campus and earn double points', 'img/Campus Recycle Day.png', '2026-02-10 00:00:00', '2026-02-12 18:00:00', 50, 1, 1, 1, 'upcoming', '2026-01-17 21:25:12'),
+(3, 'Tree Planting Program', 'Join tree planting activity to protect the environment', 'img/Tree Planting Program.png', '2025-11-15 08:00:00', '2025-11-15 12:00:00', 30, 1, 1, 1, 'ended', '2026-01-17 21:25:12');
 
 -- --------------------------------------------------------
 
@@ -104,6 +105,14 @@ CREATE TABLE `event_logs` (
   `users_id` int(11) NOT NULL,
   `status` enum('joined','completed','cancelled') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `event_logs`
+--
+
+INSERT INTO `event_logs` (`id`, `events_id`, `users_id`, `status`) VALUES
+(1, 1, 1, 'joined'),
+(2, 3, 1, 'completed');
 
 -- --------------------------------------------------------
 
@@ -128,8 +137,9 @@ CREATE TABLE `partners` (
 --
 
 INSERT INTO `partners` (`id`, `name`, `company_image`, `email`, `password`, `contact_person`, `phone`, `address`, `created_at`) VALUES
-(1, 'Subway', 'img/subway.png', 'subway@example.com', 'subway123', 'John Doe', '0123456789', 'APU', 'current_timestamp()'),
-(2, 'Aicha', 'img/aicha.png', 'adminmy@aichafood.com', 'aicha123', 'Sara Lee', '0987654321', 'APU', '2025-12-21');
+(1, 'Subway', 'subway.png', 'subway@example.com', '$2y$10$jTepxF7nd94pU7E5ReBfxe77vq4KWUY9lMOQWCm8dd6OjLykP7Nwy', 'John Doe', '0123456789', 'APU', 'current_timestamp()'),
+(2, 'Aicha', 'aicha.png', 'adminmy@aichafood.com', '$2y$10$.5nHyRhmSJHAgpoOspFvd.0SZ3hNtNz8pQEIwdPpEkoitM9bDtB6q', 'Sara Lee', '0987654321', 'APU', '2025-12-21'),
+(3, 'BilaBila', 'bilabila.png', 'bilabila@gmail.com', '$2y$10$jTepxF7nd94pU7E5ReBfxe77vq4KWUY9lMOQWCm8dd6OjLykP7Nwy', 'Emily Tan', '01125665430', 'APU', 'current_timestamp()');
 
 -- --------------------------------------------------------
 
@@ -170,7 +180,8 @@ CREATE TABLE `rewards` (
 
 INSERT INTO `rewards` (`id`, `partners_id`, `name`, `description`, `quantity`, `points_required`, `expired_at`, `status`, `created_at`) VALUES
 (1, 2, 'Discount Voucher on ', '10% discount on cold drinks on aicha', 30, 20, '2026-03-05', 'available', '2025-12-05'),
-(2, 1, 'Subway 50% discount ', '50% discount of Subway on second drinks', 3, 70, '2025-12-25', 'expired', '2025-12-02');
+(2, 1, 'Subway 50% discount ', '50% discount of Subway on second drinks', 3, 70, '2025-12-25', 'expired', '2025-12-02'),
+(3, 1, '30% discount', '30% discount of all food and beverages', 2, 80, '2026-01-24T12:00', 'available', '2026-01-23 12:55:09');
 
 -- --------------------------------------------------------
 
@@ -218,7 +229,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fullname`, `password`, `profile_image`, `email`, `phone`, `role`, `user_points`, `created_at`) VALUES
-(1, 'ww', 'ww12', '', 'ww@gmail.com', '01223445677', 'student', 100, '2025-11-10 16:00:00');
+(1, 'Lorente', '$2y$10$hU6pZioLS35.OAa0OelnQ.p4HqLjveZP69inp4g7VckZNbKiAEWL.', 'student_boy.png', 'lorente@gmail.com', '012-3456234', 'student', 1649, '2025-11-10 16:00:00'),
+(2, 'Bowley', '$2y$10$TVeUG8UsnImnu4Dp3nDLG.wyo/eYuxMA7fbdkesIaum92ny67wpS6', 'student_boy.png', 'bowley@gmail.com', '821-566-7372', 'student', 515, '6/28/2025'),
+(3, 'Jane', '$2y$10$CYPtgzy2zUwsoGaNnIeuDO4XHdfH4DKBluRIB3shtn0Fd95QG4VBC', 'staff_girl.png', 'jane@gmail.com', '235-408-2442', 'staff', 959, '11/29/2025'),
+(4, 'Byran', '$2y$10$iIlgdxEyq1yy.q0XyAhB..gpHFqXaRRGHvo67UCJ40UHlkQXBx5Ty', 'staff_boy.png', 'byran@gmail.com', '585-383-4578', 'staff', 0, '5/3/2025'),
+(5, 'Lara', '$2y$10$BBfHuRFe.hB3mtz/5iAa5uuka59QA2JUHlk3zBBL5VcjewiLWLUCW', 'student_girl.png', 'lara@gmail.com', '923-773-6721', 'student', 192, '9/27/2025');
 
 --
 -- Indexes for dumped tables
@@ -299,19 +314,19 @@ ALTER TABLE `eco_actions`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `event_logs`
 --
 ALTER TABLE `event_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `partners`
 --
 ALTER TABLE `partners`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `point_rules`
@@ -323,7 +338,7 @@ ALTER TABLE `point_rules`
 -- AUTO_INCREMENT for table `rewards`
 --
 ALTER TABLE `rewards`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `reward_redemption`
@@ -335,7 +350,7 @@ ALTER TABLE `reward_redemption`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,12 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['partner_id'])) {
-    header("Location: ../login/login.php");
+    header("Location: ../../User/login.php");
     exit();
 }
-include "db.php";
+include "../../php/db.php";
 $partnerId = $_SESSION['partner_id'];
-
 $query = "SELECT * FROM partners WHERE id = '$partnerId'";
 $result = mysqli_query($conn, $query);
 $partner = mysqli_fetch_assoc($result);
@@ -14,7 +13,7 @@ $partner = mysqli_fetch_assoc($result);
 if (!isset($_GET['id'])) { header("Location: rewards.php"); exit(); }
 $rewardId = mysqli_real_escape_string($conn, $_GET['id']);
 
-$query = "SELECT * FROM rewards WHERE id = '$rewardId' AND partners_id = '$partnerId'";
+$query = "SELECT * FROM rewards WHERE id = '$rewardId' AND partners_id = '{$partner['id']}'";
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($result);
 
@@ -60,7 +59,4 @@ if (!$row) { echo "Reward not found."; exit(); }
     </main>
 </div>
 </body>
-
 </html>
-
-
