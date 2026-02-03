@@ -9,6 +9,18 @@ if (!isset($_SESSION['user_id'])) {
 $user_id  = $_SESSION['user_id'];
 $event_id = intval($_GET['event_id'] ?? 0);
 
+$checkJoin = $conn->query("
+    SELECT id FROM event_logs
+    WHERE users_id = $user_id AND events_id = $event_id
+");
+
+if ($checkJoin->num_rows === 0) {
+    $conn->query("
+        INSERT INTO event_logs (events_id, users_id, status)
+        VALUES ($event_id, $user_id, 'joined')
+    ");
+}
+
 /* ===== HARD-CODED QUESTIONS ===== */
 $questions = [
     1 => [
