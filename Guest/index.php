@@ -343,9 +343,6 @@ if (!$next2) {
   </div>
 </section>
 
-</body>
-</html>
-
 <!-- Partners -->
 <section id="partners" class="partners">
   <div class="container">
