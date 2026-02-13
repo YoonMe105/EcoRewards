@@ -51,10 +51,34 @@ if (isset($_POST['btnUpdate'])) {
 <body>
 <div class="app-layout">
     <aside class="sidebar">
-        <div class="sidebar-top"><div class="logo">EcoRewards</div></div>
+        <div class="sidebar-top">
+            <div class="logo">EcoRewards</div>
+        </div>
+
+        <div class="profile" style="padding: 20px; text-align: center; border-bottom: 1px solid #f3f4f6;">
+            <div class="avatar-circle" style="width: 80px; height: 80px; margin: 0 auto 10px; background: #f3f4f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+               <?php 
+                $imagePath = "../../image/" . $partner['name'] . ".png";
+                if (file_exists($imagePath)) {
+                    echo '<img src="' . htmlspecialchars($imagePath) . '" alt="Profile" style="width:100%; height:100%; object-fit:cover;">';
+                } else {
+                    echo '<span style="font-size: 30px;">👤</span>';
+                }
+                ?>
+
+        ?>
+        </div>
+        <div class="profile-info">
+                <div class="name" style="font-weight: bold; font-size: 16px;"><?= htmlspecialchars($partner['name']) ?></div>
+                <div class="role" style="color: #6b7280; font-size: 14px;">Partner</div>
+            </div>
+        </div>
         <nav class="nav">
             <a href="../dashboard.php" class="nav-item">Dashboard</a>
+            <a href="../marketing.php" class="nav-item">Marketing Analysis</a>
+            <a href="../events/events.php" class="nav-item">Events</a>
             <a href="rewards.php" class="nav-item active">Rewards</a>
+            <a href="../profile.php" class="nav-item">Profile</a>
         </nav>
     </aside>
 
@@ -100,4 +124,5 @@ if (isset($_POST['btnUpdate'])) {
     </main>
 </div>
 </body>
+
 </html>
